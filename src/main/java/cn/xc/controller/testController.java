@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @version V1.0
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class testController {
     protected static Logger logger = LoggerFactory.getLogger(testController.class);
     @RequestMapping("/index")
-    public String say(){
-        logger.info("deadbeef");
-        return "index";
+    @ResponseBody
+    public String say(String account, String password){
+        logger.info("account = " + account +"----password = " + password);
+        return account + "----" + password;
     }
 }

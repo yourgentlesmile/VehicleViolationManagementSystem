@@ -25,7 +25,7 @@
         identifier,type,admin_name,sex,phone_number,avatar,remark,email,admin_password,gmt_create,gmt_modified,is_deleted
     </sql>
     <sql id="Insert_column_list_value">
-        #{identifier},#{type},#{admin_name},#{sex},#{phone_number},#{avatar},#{remark},#{email},#{admin_password}
+        #{identifier},#{type},#{adminName},#{sex},#{phoneNumber},#{avatar},#{remark},#{email},#{adminPassword}
     </sql>
     <!--新增操作-->
     <insert id="insertData" parameterType="cn.xc.entity.DO.AdminDO">
@@ -56,7 +56,7 @@
     <update id="updateData" parameterType="cn.xc.entity.DO.AdminDO">
         UPDATE admin SET identifier = #{identifier},
         type = #{type},
-        admin_name = #{admin_name},
+        admin_name = #{adminName},
         sex = #{sex},
         phone_number = #{phoneNumber},
         avatar = #{avatar},
@@ -69,7 +69,7 @@
         <foreach collection="list" item="data" separator=";">
             UPDATE admin SET identifier = #{data.identifier},
             type = #{data.type},
-            admin_name = #{data.admin_name},
+            admin_name = #{data.adminName},
             sex = #{data.sex},
             phone_number = #{data.phoneNumber},
             avatar = #{data.avatar},
@@ -88,8 +88,8 @@
             <if test="type != null">
                 type = #{type},
             </if>
-            <if test="admin_name != null">
-                admin_name = #{admin_name},
+            <if test="adminName != null">
+                admin_name = #{adminName},
             </if>
             <if test="sex != null">
                 sex = #{sex},
@@ -123,8 +123,8 @@
                 <if test="type != null">
                     type = #{data.type},
                 </if>
-                <if test="admin_name != null">
-                    admin_name = #{data.admin_name},
+                <if test="adminName != null">
+                    admin_name = #{data.adminName},
                 </if>
                 <if test="sex != null">
                     sex = #{data.sex},
@@ -177,7 +177,7 @@
         FROM admin WHERE identifier = #{identifier} AND is_deleted = 0
     </select>
 
-    <select id="checkIdentifierUnique" parameterType="java.lang.String" resultMap="java.lang.Integer">
+    <select id="checkIdentifierUnique" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT
         count(*)
         FROM admin WHERE identifier = #{identifier} AND is_deleted = 0

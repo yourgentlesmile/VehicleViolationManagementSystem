@@ -181,4 +181,7 @@ public class AdminVO {
         this.email = fromDB.getEmail();
         this.id = fromDB.getId();
     }
+
+    public AdminVO() {
+    }
 }
