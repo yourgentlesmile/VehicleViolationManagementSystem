@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xc.dao.IBulletinBoardDAO">
+    <resultMap id="fullStructure" type="cn.xc.entity.DO.BulletinBoardDO">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="publisher_id" jdbcType="BIGINT" property="publisherId"/>
+        <result column="context" jdbcType="VARCHAR" property="context"/>
+        <result column="type" jdbcType="TINYINT" property="type"/>
+        <result column="gmt_create" jdbcType="DATE" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="DATE" property="gmtModified"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+    </resultMap>
+    <!--新增操作-->
+    <insert id="insertData" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        INSERT INTO bulletin_board (publisher_id,context,type,gmt_create,gmt_modified,is_deleted)
+        VALUE (#{publisherId},#{context},#{type},NOW(),NOW(),0)
+    </insert>
+    <insert id="insertDataByList" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        INSERT INTO bulletin_board (publisher_id,context,type,gmt_create,gmt_modified,is_deleted)
+        VALUES
+        <foreach collection="list" item="data" separator=",">
+            (#{data.publisherId},#{data.context},#{data.type},NOW(),NOW(),0)
+        </foreach>
+    </insert>
+
+    <!--删除操作-->
+    <update id="deleteDataByPrimaryKey" parameterType="java.lang.Long">
+        UPDATE bulletin_board SET is_deleted = 1, gmt_modified = NOW() WHERE id = #{id}
+    </update>
+    <update id="deleteDataByList" parameterType="java.util.List">
+        UPDATE bulletin_board SET is_deleted = 1, gmt_modified = NOW() WHERE id IN
+        <foreach collection="list" item="data" open="(" separator="," close=")">
+            #{data}
+        </foreach>
+        AND is_deleted = 0
+    </update>
+
+    <!--更新操作-->
+    <update id="updateData" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        UPDATE bulletin_board SET publisher_id = #{publisherId},
+        context = #{context},
+        type = #{type},
+        gmt_modified = NOW()
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+    <update id="updateDataByList" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        <foreach collection="list" item="data" separator=";">
+            UPDATE bulletin_board SET publisher_id = #{data.publisherId},
+            context = #{data.context},
+            type = #{data.type},
+            gmt_modified = NOW()
+            WHERE id = #{data.id} AND is_deleted = 0
+        </foreach>
+    </update>
+    <update id="updateDataSelective" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        UPDATE bulletin_board
+        <set>
+            <if test="publisherId != null">
+                publisher_id = #{publisherId},
+            </if>
+            <if test="context != null">
+                context = #{context},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            gmt_modified = NOW()
+        </set>
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+    <update id="updateDataByListSelective" parameterType="cn.xc.entity.DO.BulletinBoardDO">
+        <foreach collection="list" item="data" separator=";">
+            UPDATE bulletin_board
+            <set>
+                <if test="data.publisherId != null">
+                    publisher_id = #{data.publisherId},
+                </if>
+                <if test="data.context != null">
+                    context = #{data.context},
+                </if>
+                <if test="data.type != null">
+                    type = #{data.type},
+                </if>
+                gmt_modified = NOW()
+            </set>
+            WHERE id = #{data.id} AND is_deleted = 0
+        </foreach>
+    </update>
+
+    <!--查操作-->
+    <select id="getDataByPrimaryKey" parameterType="java.lang.Long" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE id = #{id} WHERE is_deleted = 0
+    </select>
+    <select id="findAll" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE is_deleted = 0
+    </select>
+    <select id="getDataByGmtCreateBetween" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE gmt_create BETWEEN #{start} AND #{end} AND is_deleted = 0
+    </select>
+    <select id="getDataByGmtModifiedBetween" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE gmt_modified BETWEEN #{start} AND #{end} AND is_deleted = 0
+    </select>
+    <select id="getDataByPublisherId" parameterType="java.lang.Long" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE publisher_id = #{publishId} AND is_deleted = 0
+    </select>
+    <select id="getDataByType" parameterType="java.lang.Integer" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE type = #{type} AND is_deleted = 0
+    </select>
+    <select id="getDataByIsDeleted" parameterType="java.lang.Integer" resultMap="fullStructure">
+        SELECT * FROM bulletin_board WHERE is_deleted = 1
+    </select>
+</mapper>
