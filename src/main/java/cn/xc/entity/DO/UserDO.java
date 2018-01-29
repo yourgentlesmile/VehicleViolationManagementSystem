@@ -1,5 +1,7 @@
 package cn.xc.entity.DO;
 
+import cn.xc.entity.VO.UserVO;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -77,6 +79,24 @@ public class UserDO extends BaseDO implements Serializable {
      */
     public static final String TABLE_NAME = "user";
     private static final long serialVersionUID = 7L;
+
+    public UserDO() {
+    }
+
+    public UserDO(UserVO fromUser) {
+        super(fromUser.getId(), null, null, null);
+        this.identifier = fromUser.getIdentifier();
+        this.userName = fromUser.getUserName();
+        this.nickName = fromUser.getNickName();
+        this.sex = fromUser.getSex();
+        this.phoneNumber = fromUser.getPhoneNumber();
+        this.idcardNumber = fromUser.getIdcardNumber();
+        this.carNumber = fromUser.getCarNumber();
+        this.email = fromUser.getEmail();
+        this.avatar = fromUser.getAvatar();
+        this.remark = fromUser.getRemark();
+        this.birthDate = fromUser.getBirthDate();
+    }
 
     public Long getId() {
         return id;

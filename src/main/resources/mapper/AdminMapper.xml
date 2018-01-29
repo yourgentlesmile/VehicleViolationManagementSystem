@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.xc.dao.IAdminDao">
+<mapper namespace="cn.xc.dao.IAdminDAO">
     <resultMap id="fullStructure" type="cn.xc.entity.DO.AdminDO">
         <result column="id" jdbcType="BIGINT" property="id"/>
         <result column="identifier" jdbcType="VARCHAR" property="identifier"/>

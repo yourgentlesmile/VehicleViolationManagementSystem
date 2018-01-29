@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.xc.dao.IUserDAO">
+    <resultMap id="fullStructure" type="cn.xc.entity.DO.UserDO">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="identifier" jdbcType="VARCHAR" property="identifier"/>
+
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+        <result column="idcard_number" jdbcType="VARCHAR" property="idcardNumber"/>
+        <result column="car_number" jdbcType="VARCHAR" property="carNumber"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="birth_date" jdbcType="DATE" property="birthDate"/>
+
+        <result column="gmt_create" jdbcType="DATE" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="DATE" property="gmtModified"/>
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
+    </resultMap>
+    <sql id="Base_column_list">
+        id,identifier,user_name,nick_name,sex,phone_number,idcard_number,car_number,email,avatar,remark,user_password,birth_date,gmt_create,gmt_modified,is_deleted
+    </sql>
+    <sql id="Insert_column_list">
+        identifier,user_name,nick_name,sex,phone_number,idcard_number,car_number,email,avatar,remark,user_password,birth_date,gmt_create,gmt_modified,is_deleted
+    </sql>
+    <sql id="Insert_column_list_value">
+        #{identifier},#{userName},#{nickName},#{sex},#{phoneNumber},#{idcardNumber},#{carNumber},#{email},#{avatar},#{remark},#{userPassword},#{birthDate}
+    </sql>
+    <!--新增操作-->
+    <insert id="insertData" parameterType="cn.xc.entity.DO.UserDO">
+        INSERT INTO user (<include refid="Insert_column_list"/>)
+        VALUE (<include refid="Insert_column_list_value"/>,NOW(),NOW(),0)
+    </insert>
+    <insert id="insertDataByList" parameterType="cn.xc.entity.DO.UserDO">
+        INSERT INTO user (<include refid="Insert_column_list"/>)
+        VALUES
+        <foreach collection="list" item="data" separator=",">
+            (<include refid="Insert_column_list_value"/>,NOW(),NOW(),0)
+        </foreach>
+    </insert>
+
+    <!--删除操作-->
+    <update id="deleteDataByPrimaryKey" parameterType="java.lang.Long">
+        UPDATE user SET is_deleted = 1, gmt_modified = NOW() WHERE id = #{id}
+    </update>
+    <update id="deleteDataByList" parameterType="java.util.List">
+        UPDATE user SET is_deleted = 1, gmt_modified = NOW() WHERE id IN
+        <foreach collection="list" item="data" open="(" separator="," close=")">
+            #{data}
+        </foreach>
+        AND is_deleted = 0
+    </update>
+
+    <!--更新操作-->
+    <update id="updateData" parameterType="cn.xc.entity.DO.UserDO">
+        UPDATE user SET identifier = #{identifier},
+        user_name = #{userName},
+        nick_name = #{nickName},
+        sex = #{sex},
+        phone_number = #{phoneNumber},
+        idcard_number = #{idcardNumber},
+        car_number = #{carNumber},
+        email = #{email},
+        avatar = #{avatar},
+        remark = #{remark},
+        user_password = #{userPassword},
+        birth_date = #{birthDate},
+        gmt_modified = NOW()
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+    <update id="updateDataByList" parameterType="cn.xc.entity.DO.UserDO">
+        <foreach collection="list" item="data" separator=";">
+            UPDATE user SET identifier = #{identifier},
+            user_name = #{userName},
+            nick_name = #{nickName},
+            sex = #{sex},
+            phone_number = #{phoneNumber},
+            idcard_number = #{idcardNumber},
+            car_number = #{carNumber},
+            email = #{email},
+            avatar = #{avatar},
+            remark = #{remark},
+            user_password = #{userPassword},
+            birth_date = #{birthDate},
+            gmt_modified = NOW()
+            WHERE id = #{id} AND is_deleted = 0
+        </foreach>
+    </update>
+    <update id="updateDataSelective" parameterType="cn.xc.entity.DO.UserDO">
+        UPDATE user
+        <set>
+            <if test="identifier != null">
+                identifier = #{identifier},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber},
+            </if>
+            <if test="idcardNumber != null">
+                idcard_number = #{idcardNumber},
+            </if>
+            <if test="carNumber != null">
+                car_number = #{carNumber},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword},
+            </if>
+            <if test="birthDate != null">
+                birth_date = #{birthDate},
+            </if>
+            gmt_modified = NOW()
+        </set>
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+    <update id="updateDataByListSelective" parameterType="cn.xc.entity.DO.UserDO">
+        <foreach collection="list" item="data" separator=";">
+            UPDATE user
+            <set>
+                <if test="identifier != null">
+                    identifier = #{identifier},
+                </if>
+                <if test="userName != null">
+                    user_name = #{userName},
+                </if>
+                <if test="nickName != null">
+                    nick_name = #{nickName},
+                </if>
+                <if test="sex != null">
+                    sex = #{sex},
+                </if>
+                <if test="phoneNumber != null">
+                    phone_number = #{phoneNumber},
+                </if>
+                <if test="idcardNumber != null">
+                    idcard_number = #{idcardNumber},
+                </if>
+                <if test="carNumber != null">
+                    car_number = #{carNumber},
+                </if>
+                <if test="email != null">
+                    email = #{email},
+                </if>
+                <if test="avatar != null">
+                    avatar = #{avatar},
+                </if>
+                <if test="remark != null">
+                    remark = #{remark},
+                </if>
+                <if test="userPassword != null">
+                    user_password = #{userPassword},
+                </if>
+                <if test="birthDate != null">
+                    birth_date = #{birthDate},
+                </if>
+                gmt_modified = NOW()
+            </set>
+            WHERE id = #{id} AND is_deleted = 0
+        </foreach>
+    </update>
+
+    <!--查操作-->
+    <select id="getDataByPrimaryKey" parameterType="java.lang.Long" resultMap="fullStructure">
+        SELECT 
+        <include refid="Base_column_list"/>
+        FROM user WHERE id = #{id} WHERE is_deleted = 0
+    </select>
+    <select id="findAll" resultMap="fullStructure">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM user WHERE is_deleted = 0
+    </select>
+    <select id="getDataByGmtCreateBetween" resultMap="fullStructure">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM user WHERE gmt_create BETWEEN #{start} AND #{end} AND is_deleted = 0
+    </select>
+    <select id="getDataByGmtModifiedBetween" resultMap="fullStructure">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM user WHERE gmt_modified BETWEEN #{start} AND #{end} AND is_deleted = 0
+    </select>
+    <select id="getDataByIdentifier" parameterType="java.lang.String" resultMap="fullStructure">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM user WHERE identifier = #{identifier} AND is_deleted = 0
+    </select>
+
+    <select id="checkIdentifierUnique" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM user WHERE identifier = #{identifier} AND is_deleted = 0
+    </select>
+
+    <select id="getDataByIsDeleted" parameterType="java.lang.Integer" resultMap="fullStructure">
+        SELECT
+        <include refid="Base_column_list"/>
+        FROM user WHERE is_deleted = 1
+    </select>
+</mapper>

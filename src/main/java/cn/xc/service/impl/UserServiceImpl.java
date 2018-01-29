@@ -1,36 +1,39 @@
 package cn.xc.service.impl;
 
-import cn.xc.dao.IAdminDAO;
+import cn.xc.dao.IUserDAO;
 import cn.xc.entity.DO.AdminDO;
 import cn.xc.entity.DO.BaseDO;
+import cn.xc.entity.DO.UserDO;
 import cn.xc.entity.VO.AdminVO;
 import cn.xc.entity.VO.RegisterVO;
-import cn.xc.service.IAdminService;
+import cn.xc.entity.VO.UserVO;
+import cn.xc.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
+ * @Description: 用户服务实现类
+ * 
+ * @Author XiongCheng 
  * @version V1.0
- * @Description: 管理员服务实现类
- * @Author XiongCheng
- * @Date 2018/1/28 10:56.
+ * @Date 2018/1/29 10:21.
  */
 @Service
-public class AdminServiceImpl implements IAdminService {
+public class UserServiceImpl implements IUserService {
     @Autowired
-    private IAdminDAO db;
+    private IUserDAO db;
 
     /**
      * @Description: 用户注册
      * @param user
      */
     @Override
-    public void registerAdmin(RegisterVO user) {
-        AdminDO toDB = new AdminDO();
+    public void registerUser(RegisterVO user) {
+        UserDO toDB = new UserDO();
         toDB.setIdentifier(user.getIdentifier());
-        toDB.setAdminPassword(user.getAdminPassword());
+        toDB.setUserPassword(user.getAdminPassword());
         db.insertData(toDB);
     }
 
@@ -39,8 +42,8 @@ public class AdminServiceImpl implements IAdminService {
      * @param user 待更新数据
      */
     @Override
-    public void updateInformation(AdminVO user) {
-        AdminDO toDB = new AdminDO(user);
+    public void updateInformation(UserVO user) {
+        UserDO toDB = new UserDO(user);
         db.updateDataSelective(toDB);
     }
 
@@ -50,9 +53,9 @@ public class AdminServiceImpl implements IAdminService {
      * @return 获取到的用户信息
      */
     @Override
-    public AdminVO getAdminInformation(Long id) {
-        AdminDO fromDB = (AdminDO) db.getDataByPrimaryKey(id);
-        return new AdminVO(fromDB);
+    public UserVO getAdminInformation(Long id) {
+        UserDO fromDB = (UserDO) db.getDataByPrimaryKey(id);
+        return new UserVO(fromDB);
     }
 
     /**
@@ -62,14 +65,14 @@ public class AdminServiceImpl implements IAdminService {
      * @return
      */
     @Override
-    public AdminVO checkPassword(String identifier, String password) {
+    public UserVO checkPassword(String identifier, String password) {
         List<BaseDO> result = db.getDataByIdentifier(identifier);
         if(result.size() == 0){
             return null;
         }
-        AdminDO prepare = (AdminDO) result.get(0);
-        if(prepare.getAdminPassword().equals(password)){
-            return new AdminVO(prepare);
+        UserDO prepare = (UserDO) result.get(0);
+        if(prepare.getUserPassword().equals(password)){
+            return new UserVO(prepare);
         }else {
             return null;
 
@@ -87,8 +90,8 @@ public class AdminServiceImpl implements IAdminService {
         if(result.size() == 0){
             return -1;
         }
-        AdminDO prepare = (AdminDO) result.get(0);
-        prepare.setAdminPassword(password);
+        UserDO prepare = (UserDO) result.get(0);
+        prepare.setUserPassword(password);
         db.updateDataSelective(prepare);
         return 0;
     }

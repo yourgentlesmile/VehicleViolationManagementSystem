@@ -41,7 +41,9 @@ public class AdminBasisController {
     @PostMapping("/changepwd")
     @ResponseBody
     public RespEntity changePassword(String identifier, String password){
-        service.updatePassword(identifier,password);
+        if(service.updatePassword(identifier,password) == -1){
+            return new RespEntity(RespCode.WARN,null);
+        }
         return new RespEntity(RespCode.SUCCESS,null);
     }
     @PostMapping("/checkIdentifier")
