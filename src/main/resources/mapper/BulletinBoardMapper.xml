@@ -8,8 +8,8 @@
         <result column="publisher_id" jdbcType="BIGINT" property="publisherId"/>
         <result column="context" jdbcType="VARCHAR" property="context"/>
         <result column="type" jdbcType="TINYINT" property="type"/>
-        <result column="gmt_create" jdbcType="DATE" property="gmtCreate"/>
-        <result column="gmt_modified" jdbcType="DATE" property="gmtModified"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
     </resultMap>
     <!--新增操作-->

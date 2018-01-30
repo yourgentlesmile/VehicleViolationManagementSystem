@@ -14,8 +14,8 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="admin_password" jdbcType="VARCHAR" property="adminPassword"/>
-        <result column="gmt_create" jdbcType="DATE" property="gmtCreate"/>
-        <result column="gmt_modified" jdbcType="DATE" property="gmtModified"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted"/>
     </resultMap>
     <sql id="Base_column_list">

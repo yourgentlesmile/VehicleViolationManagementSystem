@@ -75,61 +75,36 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, type, identifier, creater_id, title, context, processor_id, response_context, 
+    id, type, identifier, creater_id, title, context, processor_id, response_context,
     response_time, status, gmt_create, gmt_modified, is_deleted
   </sql>
-  <select id="selectByExample" parameterType="cn.xc.dao.condition.ConsultationListExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from consultation_list
+
+  <!--删除操作-->
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    UPDATE consultation_list SET is_deleted = 1, gmt_modified = NOW() WHERE id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="deleteByExample" parameterType="cn.xc.dao.condition.ConsultationListExample">
+    UPDATE consultation_list SET is_deleted = 1, gmt_modified = NOW()
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="limit != null">
-      <if test="offset != null">
-        limit ${offset}, ${limit}
-      </if>
-      <if test="offset == null">
-        limit ${limit}
-      </if>
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from consultation_list
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from consultation_list
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="cn.xc.dao.condition.ConsultationListExample">
-    delete from consultation_list
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
+    AND id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--新增操作-->
   <insert id="insert" parameterType="cn.xc.entity.DO.ConsultationListDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into consultation_list (type, identifier, creater_id, 
-      title, context, processor_id, 
-      response_context, response_time, status, 
+    insert into consultation_list (type, identifier, creater_id,
+    title, context, processor_id,
+    response_context, response_time, status,
       gmt_create, gmt_modified, is_deleted
       )
-    values (#{type,jdbcType=TINYINT}, #{identifier,jdbcType=VARCHAR}, #{createrId,jdbcType=BIGINT}, 
-      #{title,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR}, #{processorId,jdbcType=BIGINT}, 
-      #{responseContext,jdbcType=VARCHAR}, #{responseTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT}
-      )
+    values (#{type,jdbcType=TINYINT}, #{identifier,jdbcType=VARCHAR}, #{createrId,jdbcType=BIGINT},
+    #{title,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR}, #{processorId,jdbcType=BIGINT},
+    #{responseContext,jdbcType=VARCHAR}, #{responseTime,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT},
+    NOW(), NOW(), 0)
   </insert>
   <insert id="insertSelective" parameterType="cn.xc.entity.DO.ConsultationListDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -164,15 +139,9 @@
       <if test="status != null">
         status,
       </if>
-      <if test="gmtCreate != null">
         gmt_create,
-      </if>
-      <if test="gmtModified != null">
         gmt_modified,
-      </if>
-      <if test="isDeleted != null">
         is_deleted,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="type != null">
@@ -202,23 +171,48 @@
       <if test="status != null">
         #{status,jdbcType=TINYINT},
       </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
+      NOW(),NOW(),0
     </trim>
   </insert>
+
+  <!--查操作-->
+  <select id="selectByExample" parameterType="cn.xc.dao.condition.ConsultationListExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List"/>
+    from consultation_list
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
+    </if>
+    AND is_deleted = 0
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from consultation_list
+    where id = #{id,jdbcType=BIGINT} AND is_deleted = 0
+  </select>
   <select id="countByExample" parameterType="cn.xc.dao.condition.ConsultationListExample" resultType="java.lang.Long">
     select count(*) from consultation_list
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <!--更新操作-->
   <update id="updateByExampleSelective" parameterType="map">
     update consultation_list
     <set>
@@ -252,18 +246,11 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
-      <if test="record.gmtCreate != null">
-        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.isDeleted != null">
-        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
-      </if>
+      gmt_modified = NOW(),
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
+      AND is_deleted = 0
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
@@ -278,11 +265,10 @@
       response_context = #{record.responseContext,jdbcType=VARCHAR},
       response_time = #{record.responseTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=TINYINT},
-      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      is_deleted = #{record.isDeleted,jdbcType=TINYINT}
+    gmt_modified = NOW(),
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
+      AND is_deleted = 0
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="cn.xc.entity.DO.ConsultationListDO">
@@ -315,17 +301,9 @@
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},
       </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
+      gmt_modified = NOW()
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT} AND is_deleted = 0
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.xc.entity.DO.ConsultationListDO">
     update consultation_list
@@ -338,9 +316,7 @@
       response_context = #{responseContext,jdbcType=VARCHAR},
       response_time = #{responseTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=TINYINT},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
+    gmt_modified = NOW(),
+    where id = #{id,jdbcType=BIGINT} AND is_deleted = 0
   </update>
 </mapper>

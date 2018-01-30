@@ -1,7 +1,7 @@
 package cn.xc.entity.DO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @Description: 数据表bulletin_board实体类
@@ -64,19 +64,19 @@ public class BulletinBoardDO extends BaseDO implements Serializable {
         this.type = type;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 
@@ -91,7 +91,7 @@ public class BulletinBoardDO extends BaseDO implements Serializable {
     public BulletinBoardDO() {
     }
 
-    public BulletinBoardDO(Long publisherId, String context, Integer type,Date gmtCreate,Date gmtModified,Integer isDeleted) {
+    public BulletinBoardDO(Long publisherId, String context, Integer type, Timestamp gmtCreate, Timestamp gmtModified, Integer isDeleted) {
         this.publisherId = publisherId;
         this.context = context;
         this.type = type;

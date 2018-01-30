@@ -1,12 +1,12 @@
 package cn.xc.entity.DO;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @version V1.0
  * @Description: 数据表实体类基类，包含id，数据记录创建时间，修改时间，逻辑删除标志位
  * @Author XiongCheng
- * @Date 2018/1/21 22:45.
+ * @Timestamp 2018/1/21 22:45.
  */
 public class BaseDO {
 
@@ -15,12 +15,12 @@ public class BaseDO {
     /**
      * 创建时间
      */
-    protected Date gmtCreate;
+    protected Timestamp gmtCreate;
 
     /**
      * 最后修改时间
      */
-    protected Date gmtModified;
+    protected Timestamp gmtModified;
 
     /**
      * 是否被删除1:已删除 0:未删除
@@ -30,7 +30,7 @@ public class BaseDO {
     public BaseDO() {
     }
 
-    public BaseDO(Long id, Date gmtCreate, Date gmtModified, Integer isDeleted) {
+    public BaseDO(Long id, Timestamp gmtCreate, Timestamp gmtModified, Integer isDeleted) {
         this.id = id;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;

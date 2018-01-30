@@ -5,13 +5,13 @@
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="identifier" jdbcType="VARCHAR" property="identifier" />
         <result column="violation_type" jdbcType="TINYINT" property="violationType" />
-        <result column="violation_time" jdbcType="DATE" property="violationTime" />
+        <result column="violation_time" jdbcType="TIMESTAMP" property="violationTime"/>
         <result column="detail" jdbcType="VARCHAR" property="detail" />
         <result column="car_number" jdbcType="VARCHAR" property="carNumber" />
         <result column="penalty_point" jdbcType="TINYINT" property="penaltyPoint" />
         <result column="penalty_money" jdbcType="DECIMAL" property="penaltyMoney" />
-        <result column="gmt_create" jdbcType="DATE" property="gmtCreate" />
-        <result column="gmt_modified" jdbcType="DATE" property="gmtModified" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
         <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     </resultMap>
     <sql id="Example_Where_Clause">

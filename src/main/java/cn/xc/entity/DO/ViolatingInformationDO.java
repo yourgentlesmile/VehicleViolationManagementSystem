@@ -2,13 +2,13 @@ package cn.xc.entity.DO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @version V1.0
  * @Description: 数据表violation_information实体类
  * @Author XiongCheng
- * @Date 2018/1/20 13:50.
+ * @Timestamp 2018/1/20 13:50.
  */
 public class ViolatingInformationDO extends BaseDO implements Serializable {
 
@@ -25,7 +25,7 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
     /**
      * 违章时间
      */
-    private Date violationTime;
+    private Timestamp violationTime;
 
     /**
      * 违章详情
@@ -77,11 +77,11 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
         this.violationType = violationType;
     }
 
-    public Date getViolationTime() {
+    public Timestamp getViolationTime() {
         return violationTime;
     }
 
-    public void setViolationTime(Date violationTime) {
+    public void setViolationTime(Timestamp violationTime) {
         this.violationTime = violationTime;
     }
 
@@ -117,19 +117,19 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
         this.penaltyMoney = penaltyMoney;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 

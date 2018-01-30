@@ -1,6 +1,7 @@
 package cn.xc.entity.DO;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -48,7 +49,7 @@ public class ConsultationListDO implements Serializable {
     /**
      * 回应时间
      */
-    private Date responseTime;
+    private Timestamp responseTime;
 
     /**
      * 工单状态0:未分配 1:已分配 2:已处理 3:已关闭
@@ -58,12 +59,12 @@ public class ConsultationListDO implements Serializable {
     /**
      * 创建时间
      */
-    private Date gmtCreate;
+    private Timestamp gmtCreate;
 
     /**
      * 最后修改时间
      */
-    private Date gmtModified;
+    private Timestamp gmtModified;
 
     /**
      * 是否被删除1:已删除 0:未删除
@@ -140,7 +141,7 @@ public class ConsultationListDO implements Serializable {
         return responseTime;
     }
 
-    public void setResponseTime(Date responseTime) {
+    public void setResponseTime(Timestamp responseTime) {
         this.responseTime = responseTime;
     }
 
@@ -156,7 +157,7 @@ public class ConsultationListDO implements Serializable {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
@@ -164,7 +165,7 @@ public class ConsultationListDO implements Serializable {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 

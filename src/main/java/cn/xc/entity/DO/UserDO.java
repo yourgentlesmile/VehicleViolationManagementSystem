@@ -3,12 +3,12 @@ package cn.xc.entity.DO;
 import cn.xc.entity.VO.UserVO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @Description: 数据表user实体类
- * 
- * @Author XiongCheng 
+ *
+ * @Author XiongCheng
  * @version V1.0
  * @Date 2018/1/20 13:50.
  */
@@ -72,7 +72,7 @@ public class UserDO extends BaseDO implements Serializable {
     /**
      * 出生日期
      */
-    private Date birthDate;
+    private Timestamp birthDate;
 
     /**
      * 表名
@@ -194,27 +194,27 @@ public class UserDO extends BaseDO implements Serializable {
         this.userPassword = userPassword;
     }
 
-    public Date getBirthDate() {
+    public Timestamp getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(Timestamp birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 

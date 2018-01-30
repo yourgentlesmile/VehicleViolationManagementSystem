@@ -74,6 +74,8 @@
     id, login_user_id, login_ip, login_time, login_user_identifier, is_admin, gmt_create, 
     gmt_modified, is_deleted
   </sql>
+
+    <!--查操作-->
   <select id="selectByExample" parameterType="cn.xc.dao.condition.LogLoginExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -83,6 +85,7 @@
     from log_login
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
+        AND is_deleted = 0
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
@@ -100,18 +103,29 @@
     select 
     <include refid="Base_Column_List" />
     from log_login
-    where id = #{id,jdbcType=BIGINT}
+      where id = #{id,jdbcType=BIGINT} and is_deleted = 0
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from log_login
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="cn.xc.dao.condition.LogLoginExample">
-    delete from log_login
+    <select id="countByExample" parameterType="cn.xc.dao.condition.LogLoginExample" resultType="java.lang.Long">
+        select count(*) from log_login
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
+        and is_deleted = 0;
     </if>
-  </delete>
+    </select>
+
+    <!--删除操作-->
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    UPDATE log_login SET is_deleted = 1, gmt_modified = NOW() where id = #{id,jdbcType=BIGINT} and is_deleted = 0
+  </update>
+    <update id="deleteByExample" parameterType="cn.xc.dao.condition.LogLoginExample">
+        UPDATE log_login SET is_deleted = 1, gmt_modified = NOW()
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+            and is_deleted = 0
+        </if>
+    </update>
+
+    <!--新增操作-->
   <insert id="insert" parameterType="cn.xc.entity.DO.LogLoginDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
@@ -119,9 +133,9 @@
     insert into log_login (login_user_id, login_ip, login_time, 
       login_user_identifier, is_admin, gmt_create, 
       gmt_modified, is_deleted)
-    values (#{loginUserId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
-      #{loginUserIdentifier,jdbcType=VARCHAR}, #{isAdmin,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
-      #{gmtModified,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=TINYINT})
+    values (#{loginUserId,jdbcType=BIGINT}, #{loginIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP},
+      #{loginUserIdentifier,jdbcType=VARCHAR}, #{isAdmin,jdbcType=TINYINT}, NOW(),
+      NOW(), 0)
   </insert>
   <insert id="insertSelective" parameterType="cn.xc.entity.DO.LogLoginDO">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -144,15 +158,9 @@
       <if test="isAdmin != null">
         is_admin,
       </if>
-      <if test="gmtCreate != null">
         gmt_create,
-      </if>
-      <if test="gmtModified != null">
         gmt_modified,
-      </if>
-      <if test="isDeleted != null">
         is_deleted,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="loginUserId != null">
@@ -170,23 +178,13 @@
       <if test="isAdmin != null">
         #{isAdmin,jdbcType=TINYINT},
       </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDeleted != null">
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
+        NOW(),
+        NOW(),
+        0,
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.xc.dao.condition.LogLoginExample" resultType="java.lang.Long">
-    select count(*) from log_login
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+
+    <!--更新操作-->
   <update id="updateByExampleSelective" parameterType="map">
     update log_login
     <set>
@@ -208,15 +206,7 @@
       <if test="record.isAdmin != null">
         is_admin = #{record.isAdmin,jdbcType=TINYINT},
       </if>
-      <if test="record.gmtCreate != null">
-        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.isDeleted != null">
-        is_deleted = #{record.isDeleted,jdbcType=TINYINT},
-      </if>
+        gmt_modified = NOW(),
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -230,11 +220,10 @@
       login_time = #{record.loginTime,jdbcType=TIMESTAMP},
       login_user_identifier = #{record.loginUserIdentifier,jdbcType=VARCHAR},
       is_admin = #{record.isAdmin,jdbcType=TINYINT},
-      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
-      is_deleted = #{record.isDeleted,jdbcType=TINYINT}
+      gmt_modified = NOW(),
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
+        AND is_deleted = 0
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="cn.xc.entity.DO.LogLoginDO">
@@ -255,17 +244,9 @@
       <if test="isAdmin != null">
         is_admin = #{isAdmin,jdbcType=TINYINT},
       </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDeleted != null">
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
+        gmt_modified = NOW(),
     </set>
-    where id = #{id,jdbcType=BIGINT}
+      where id = #{id,jdbcType=BIGINT} AND is_deleted = 0
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.xc.entity.DO.LogLoginDO">
     update log_login
@@ -274,9 +255,7 @@
       login_time = #{loginTime,jdbcType=TIMESTAMP},
       login_user_identifier = #{loginUserIdentifier,jdbcType=VARCHAR},
       is_admin = #{isAdmin,jdbcType=TINYINT},
-      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      is_deleted = #{isDeleted,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
+      gmt_modified = NOW()
+      where id = #{id,jdbcType=BIGINT} and is_deleted = 0
   </update>
 </mapper>

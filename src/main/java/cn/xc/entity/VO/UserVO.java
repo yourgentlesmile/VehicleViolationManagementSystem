@@ -2,7 +2,7 @@ package cn.xc.entity.VO;
 
 import cn.xc.entity.DO.UserDO;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @version V1.0
@@ -65,7 +65,7 @@ public class UserVO {
     /**
      * 出生日期
      */
-    private Date birthDate;
+    private Timestamp birthDate;
 
     public UserVO(UserDO fromDB) {
         this.id = fromDB.getId();
@@ -173,11 +173,11 @@ public class UserVO {
         this.remark = remark;
     }
 
-    public Date getBirthDate() {
+    public Timestamp getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(Timestamp birthDate) {
         this.birthDate = birthDate;
     }
 

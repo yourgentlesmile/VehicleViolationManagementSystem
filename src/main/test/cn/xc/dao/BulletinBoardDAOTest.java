@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class BulletinBoardDAOTest {
     public BulletinBoardDO multiData_D;
     @Before
     public void AprepareTestData(){
-        Date currentTime = new Date();
+        Timestamp currentTime = new Timestamp((new Date()).getTime());
         //单一数据增删查改准备
         single = new BulletinBoardDO(1L,"single",0,currentTime,currentTime,0);
         //多重增删查改数据准备
