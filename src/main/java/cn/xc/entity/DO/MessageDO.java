@@ -8,9 +8,11 @@ import java.util.Date;
  * 
  * @Author XiongCheng 
  * @version V1.0
- * @Date 2018/1/20 13:49.
+ * @Date 2018/1/30 12:18.
  */
-public class MessageDO extends BaseDO implements Serializable {
+public class MessageDO implements Serializable {
+    private Long id;
+
     /**
      * 发送者id
      */
@@ -32,10 +34,21 @@ public class MessageDO extends BaseDO implements Serializable {
     private Integer isRead;
 
     /**
-     * 表名
+     * 创建时间
      */
-    public static final String TABLE_NAME = "message";
-    private static final long serialVersionUID = 6L;
+    private Date gmtCreate;
+
+    /**
+     * 最后修改时间
+     */
+    private Date gmtModified;
+
+    /**
+     * 是否被删除1:已删除 0:未删除
+     */
+    private Integer isDeleted;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

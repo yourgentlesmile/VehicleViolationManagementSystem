@@ -32,6 +32,9 @@
     <sql id="Insert_column_list_value">
         #{identifier},#{userName},#{nickName},#{sex},#{phoneNumber},#{idcardNumber},#{carNumber},#{email},#{avatar},#{remark},#{userPassword},#{birthDate}
     </sql>
+    <sql id="Insert_column_list_loop_value">
+        #{data.identifier},#{data.userName},#{data.nickName},#{data.sex},#{data.phoneNumber},#{data.idcardNumber},#{data.carNumber},#{data.email},#{data.avatar},#{data.remark},#{data.userPassword},#{data.birthDate}
+    </sql>
     <!--新增操作-->
     <insert id="insertData" parameterType="cn.xc.entity.DO.UserDO">
         INSERT INTO user (<include refid="Insert_column_list"/>)
@@ -76,20 +79,20 @@
     </update>
     <update id="updateDataByList" parameterType="cn.xc.entity.DO.UserDO">
         <foreach collection="list" item="data" separator=";">
-            UPDATE user SET identifier = #{identifier},
-            user_name = #{userName},
-            nick_name = #{nickName},
-            sex = #{sex},
-            phone_number = #{phoneNumber},
-            idcard_number = #{idcardNumber},
-            car_number = #{carNumber},
-            email = #{email},
-            avatar = #{avatar},
-            remark = #{remark},
-            user_password = #{userPassword},
-            birth_date = #{birthDate},
+            UPDATE user SET identifier = #{data.identifier},
+            user_name = #{data.userName},
+            nick_name = #{data.nickName},
+            sex = #{data.sex},
+            phone_number = #{data.phoneNumber},
+            idcard_number = #{data.idcardNumber},
+            car_number = #{data.carNumber},
+            email = #{data.email},
+            avatar = #{data.avatar},
+            remark = #{data.remark},
+            user_password = #{data.userPassword},
+            birth_date = #{data.birthDate},
             gmt_modified = NOW()
-            WHERE id = #{id} AND is_deleted = 0
+            WHERE id = #{data.id} AND is_deleted = 0
         </foreach>
     </update>
     <update id="updateDataSelective" parameterType="cn.xc.entity.DO.UserDO">
@@ -140,44 +143,44 @@
             UPDATE user
             <set>
                 <if test="identifier != null">
-                    identifier = #{identifier},
+                    identifier = #{data.identifier},
                 </if>
                 <if test="userName != null">
-                    user_name = #{userName},
+                    user_name = #{data.userName},
                 </if>
                 <if test="nickName != null">
-                    nick_name = #{nickName},
+                    nick_name = #{data.nickName},
                 </if>
                 <if test="sex != null">
-                    sex = #{sex},
+                    sex = #{data.sex},
                 </if>
                 <if test="phoneNumber != null">
-                    phone_number = #{phoneNumber},
+                    phone_number = #{data.phoneNumber},
                 </if>
                 <if test="idcardNumber != null">
-                    idcard_number = #{idcardNumber},
+                    idcard_number = #{data.idcardNumber},
                 </if>
                 <if test="carNumber != null">
-                    car_number = #{carNumber},
+                    car_number = #{data.carNumber},
                 </if>
                 <if test="email != null">
-                    email = #{email},
+                    email = #{data.email},
                 </if>
                 <if test="avatar != null">
-                    avatar = #{avatar},
+                    avatar = #{data.avatar},
                 </if>
                 <if test="remark != null">
-                    remark = #{remark},
+                    remark = #{data.remark},
                 </if>
                 <if test="userPassword != null">
-                    user_password = #{userPassword},
+                    user_password = #{data.userPassword},
                 </if>
                 <if test="birthDate != null">
-                    birth_date = #{birthDate},
+                    birth_date = #{data.birthDate},
                 </if>
                 gmt_modified = NOW()
             </set>
-            WHERE id = #{id} AND is_deleted = 0
+            WHERE id = #{data.id} AND is_deleted = 0
         </foreach>
     </update>
 

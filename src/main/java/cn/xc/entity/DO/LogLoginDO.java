@@ -5,12 +5,13 @@ import java.util.Date;
 
 /**
  * @Description: 数据表log_login实体类
- * 
- * @Author XiongCheng 
+ *
+ * @Author XiongCheng
  * @version V1.0
- * @Date 2018/1/20 13:47.
+ * @Date 2018/1/30 12:19.
  */
-public class LogLoginDO extends BaseDO implements Serializable {
+public class LogLoginDO implements Serializable {
+    private Long id;
 
     /**
      * 用户登录IP
@@ -38,10 +39,21 @@ public class LogLoginDO extends BaseDO implements Serializable {
     private Integer isAdmin;
 
     /**
-     * 表名
+     * 记录创建时间
      */
-    public static final String TABLE_NAME = "log_login";
-    private static final long serialVersionUID = 4L;
+    private Date gmtCreate;
+
+    /**
+     * 最后修改时间
+     */
+    private Date gmtModified;
+
+    /**
+     * 是否被删除1:已删除 0:未删除
+     */
+    private Integer isDeleted;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

@@ -1,6 +1,7 @@
 package cn.xc.entity.DO;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @Author XiongCheng
  * @Date 2018/1/20 13:50.
  */
-public class ViolationInformationDO extends BaseDO implements Serializable {
+public class ViolatingInformationDO extends BaseDO implements Serializable {
 
     /**
      * 违章编号
@@ -44,7 +45,7 @@ public class ViolationInformationDO extends BaseDO implements Serializable {
     /**
      * 罚款
      */
-    private Integer penaltyMoney;
+    private BigDecimal penaltyMoney;
 
     /**
      * 表名
@@ -108,11 +109,11 @@ public class ViolationInformationDO extends BaseDO implements Serializable {
         this.penaltyPoint = penaltyPoint;
     }
 
-    public Integer getPenaltyMoney() {
+    public BigDecimal getPenaltyMoney() {
         return penaltyMoney;
     }
 
-    public void setPenaltyMoney(Integer penaltyMoney) {
+    public void setPenaltyMoney(BigDecimal penaltyMoney) {
         this.penaltyMoney = penaltyMoney;
     }
 
@@ -151,7 +152,7 @@ public class ViolationInformationDO extends BaseDO implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        ViolationInformationDO other = (ViolationInformationDO) that;
+        ViolatingInformationDO other = (ViolatingInformationDO) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
         && (this.getIdentifier() == null ? other.getIdentifier() == null : this.getIdentifier().equals(other.getIdentifier()))
         && (this.getViolationType() == null ? other.getViolationType() == null : this.getViolationType().equals(other.getViolationType()))

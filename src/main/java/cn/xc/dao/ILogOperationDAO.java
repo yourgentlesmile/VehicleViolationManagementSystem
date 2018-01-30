@@ -1,10 +1,37 @@
 package cn.xc.dao;
 
+import cn.xc.dao.condition.LogOperationExample;
+import cn.xc.entity.DO.LogOperationDO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 /**
- * @version V1.0
  * @Description: 操作日志数据表操作接口
- * @Author XiongCheng
- * @Date 2018/1/21 23:19.
+ * 
+ * @Author XiongCheng 
+ * @version V1.0
+ * @Date 2018/1/30 12:20.
  */
-public interface ILogOperationDAO extends BaseDAO {
+public interface ILogOperationDAO {
+    long countByExample(LogOperationExample example);
+
+    int deleteByExample(LogOperationExample example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(LogOperationDO record);
+
+    int insertSelective(LogOperationDO record);
+
+    List<LogOperationDO> selectByExample(LogOperationExample example);
+
+    LogOperationDO selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") LogOperationDO record, @Param("example") LogOperationExample example);
+
+    int updateByExample(@Param("record") LogOperationDO record, @Param("example") LogOperationExample example);
+
+    int updateByPrimaryKeySelective(LogOperationDO record);
+
+    int updateByPrimaryKey(LogOperationDO record);
 }

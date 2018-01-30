@@ -8,9 +8,10 @@ import java.util.Date;
  * 
  * @Author XiongCheng 
  * @version V1.0
- * @Date 2018/1/20 13:48.
+ * @Date 2018/1/30 12:19.
  */
-public class LogOperationDO extends BaseDO implements Serializable {
+public class LogOperationDO implements Serializable {
+    private Long id;
 
     /**
      * 操作员id
@@ -43,10 +44,21 @@ public class LogOperationDO extends BaseDO implements Serializable {
     private String opContext;
 
     /**
-     * 表名
+     * 记录创建时间
      */
-    public static final String TABLE_NAME = "log_operation";
-    private static final long serialVersionUID = 5L;
+    private Date gmtCreate;
+
+    /**
+     * 最后修改时间
+     */
+    private Date gmtModified;
+
+    /**
+     * 是否被删除1:已删除 0:未删除
+     */
+    private Integer isDeleted;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
