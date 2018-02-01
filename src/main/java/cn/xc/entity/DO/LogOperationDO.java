@@ -1,7 +1,7 @@
 package cn.xc.entity.DO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @Description: 数据表log_operation实体类
@@ -36,7 +36,7 @@ public class LogOperationDO implements Serializable {
     /**
      * 操作时间
      */
-    private Date opTime;
+    private Timestamp opTime;
 
     /**
      * 操作详细描述
@@ -46,12 +46,12 @@ public class LogOperationDO implements Serializable {
     /**
      * 记录创建时间
      */
-    private Date gmtCreate;
+    private Timestamp gmtCreate;
 
     /**
      * 最后修改时间
      */
-    private Date gmtModified;
+    private Timestamp gmtModified;
 
     /**
      * 是否被删除1:已删除 0:未删除
@@ -100,11 +100,11 @@ public class LogOperationDO implements Serializable {
         this.opType = opType;
     }
 
-    public Date getOpTime() {
+    public Timestamp getOpTime() {
         return opTime;
     }
 
-    public void setOpTime(Date opTime) {
+    public void setOpTime(Timestamp opTime) {
         this.opTime = opTime;
     }
 
@@ -116,19 +116,19 @@ public class LogOperationDO implements Serializable {
         this.opContext = opContext;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 

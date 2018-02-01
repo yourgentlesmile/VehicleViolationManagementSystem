@@ -1,7 +1,7 @@
 package cn.xc.entity.DO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @Description: 数据表message实体类
@@ -36,12 +36,12 @@ public class MessageDO implements Serializable {
     /**
      * 创建时间
      */
-    private Date gmtCreate;
+    private Timestamp gmtCreate;
 
     /**
      * 最后修改时间
      */
-    private Date gmtModified;
+    private Timestamp gmtModified;
 
     /**
      * 是否被删除1:已删除 0:未删除
@@ -90,19 +90,19 @@ public class MessageDO implements Serializable {
         this.isRead = isRead;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(Timestamp gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(Timestamp gmtModified) {
         this.gmtModified = gmtModified;
     }
 

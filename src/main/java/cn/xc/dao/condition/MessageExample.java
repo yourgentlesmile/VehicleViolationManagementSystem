@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @Author XiongCheng 
  * @version V1.0
- * @Timestamp 2018/1/30 12:20.
+ * @Date 2018/1/30 12:20.
  */
 public class MessageExample {
     protected String orderByClause;

@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @Author XiongCheng 
  * @version V1.0
- * @Timestamp 2018/1/30 12:22.
+ * @Date 2018/1/30 12:22.
  */
 public class ConsultationListExample {
     protected String orderByClause;

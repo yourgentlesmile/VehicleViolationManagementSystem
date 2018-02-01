@@ -2,7 +2,6 @@ package cn.xc.entity.DO;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @Description: 数据表consultation_list实体类
@@ -137,7 +136,7 @@ public class ConsultationListDO implements Serializable {
         this.responseContext = responseContext;
     }
 
-    public Date getResponseTime() {
+    public Timestamp getResponseTime() {
         return responseTime;
     }
 
@@ -153,7 +152,7 @@ public class ConsultationListDO implements Serializable {
         this.status = status;
     }
 
-    public Date getGmtCreate() {
+    public Timestamp getGmtCreate() {
         return gmtCreate;
     }
 
@@ -161,7 +160,7 @@ public class ConsultationListDO implements Serializable {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public Timestamp getGmtModified() {
         return gmtModified;
     }
 
