@@ -6,8 +6,8 @@ package cn.xc.exception;
  * @Author XiongCheng
  * @Date 2018/2/1 14:14.
  */
-public class CarNumberInvalidException extends Exception {
-    public CarNumberInvalidException(String message) {
+public class ViolatingInformationException extends Exception {
+    public ViolatingInformationException(String message) {
         super(message);
     }
 }

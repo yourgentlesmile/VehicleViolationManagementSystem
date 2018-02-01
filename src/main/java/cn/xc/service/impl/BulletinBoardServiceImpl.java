@@ -4,7 +4,7 @@ import cn.xc.constant.BulletinBoardConstant;
 import cn.xc.dao.IBulletinBoardDAO;
 import cn.xc.entity.DO.BaseDO;
 import cn.xc.entity.DO.BulletinBoardDO;
-import cn.xc.exception.DAONotExistException;
+import cn.xc.exception.BulletinBoardException;
 import cn.xc.service.IBulletinBoardService;
 import cn.xc.service.constant.ServiceConstant;
 import cn.xc.util.DateUtil;
@@ -32,11 +32,11 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
      * @param value 待添加的数据，包含数据：发布者id，正文，类型
      */
     @Override
-    public void addBulletin(BulletinBoardDO value) throws DAONotExistException {
+    public void addBulletin(BulletinBoardDO value) throws BulletinBoardException {
         if (db != null) {
             db.insertData(value);
         }else{
-            throw new DAONotExistException("DAO autowired is null");
+            throw new BulletinBoardException("DAO autowired is null");
         }
     }
 
@@ -46,7 +46,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
      * @Description: 删除公告
      */
     @Override
-    public void deleteBulletin(BulletinBoardDO value) throws DAONotExistException{
+    public void deleteBulletin(BulletinBoardDO value) throws BulletinBoardException {
         if (db != null) {
             db.deleteDataByPrimaryKey(value.getId());
         }
@@ -56,10 +56,10 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     /**
      * @Description: 批量删除公告
      * @param list
-     * @throws DAONotExistException
+     * @throws BulletinBoardException
      */
     @Override
-    public void deleteBulletinByList(List<BulletinBoardDO> list) throws DAONotExistException{
+    public void deleteBulletinByList(List<BulletinBoardDO> list) throws BulletinBoardException {
         List<Long> idCollection = new ArrayList<>();
         for (BulletinBoardDO item : list) {
             idCollection.add(item.getId());
@@ -67,7 +67,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
         if (db != null) {
             db.deleteDataByList(idCollection);
         }else{
-            throw new DAONotExistException("DAO autowired is null");
+            throw new BulletinBoardException("DAO autowired is null");
         }
     }
 
@@ -80,12 +80,12 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
      * @see BulletinBoardConstant
      */
     @Override
-    public List<BulletinBoardDO> listDataByCondition(int queryType, String param) throws DAONotExistException{
+    public List<BulletinBoardDO> listDataByCondition(int queryType, String param) throws BulletinBoardException {
         if (db == null) {
-            throw new DAONotExistException("DAO autowired is null");
+            throw new BulletinBoardException("DAO autowired is null");
         }
         if(param == null && (queryType != BulletinBoardConstant.FETCH_ALL)){
-            throw new IllegalArgumentException("When queryType isn't FETCH_ALL，param can't be null");
+            throw new BulletinBoardException("When queryType isn't FETCH_ALL，param can't be null");
         }
         List<BaseDO> rawResult = null;
         switch (queryType){
@@ -98,14 +98,14 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
             case BulletinBoardConstant.QUERY_BY_GMT_CREATE:
                 List<Timestamp> queryParam = DateUtil.MillisToDateList(param);
                 if(queryParam.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + queryParam.size());
+                    throw new BulletinBoardException("Need two argument，actual the number of argument in list is：" + queryParam.size());
                 }
                 rawResult = db.getDataByGmtCreateBetween(queryParam.get(ServiceConstant.INDEX_START_TIME),queryParam.get(ServiceConstant.INDEX_END_TIME));
                 break;
             case BulletinBoardConstant.QUERY_BY_GMT_MODIFIED:
                 List<Timestamp> timeScope = DateUtil.MillisToDateList(param);
                 if(timeScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + timeScope.size());
+                    throw new BulletinBoardException("Need two argument，actual the number of argument in list is：" + timeScope.size());
                 }
                 rawResult = db.getDataByGmtModifiedBetween(timeScope.get(ServiceConstant.INDEX_START_TIME),timeScope.get(ServiceConstant.INDEX_END_TIME));
                 break;
@@ -113,7 +113,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
                 rawResult = db.findAll();
                 break;
             default:
-                throw new IllegalArgumentException("Query Argument is not within the scope of the definition，actual passed query argument is:" + queryType);
+                throw new BulletinBoardException("Query Argument is not within the scope of the definition，actual passed query argument is:" + queryType);
         }
         List<BulletinBoardDO> convertedResult = new ArrayList<>();
         for (BaseDO baseDO : rawResult) {
@@ -130,12 +130,12 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
      * @see BulletinBoardConstant
      */
     @Override
-    public void updateBulletin(int updateType, Object param) throws DAONotExistException{
+    public void updateBulletin(int updateType, Object param) throws BulletinBoardException {
         if (db == null) {
-            throw new DAONotExistException("DAO autowired is null");
+            throw new BulletinBoardException("DAO autowired is null");
         }
         if(param == null){
-            throw new IllegalArgumentException("param can't be null");
+            throw new BulletinBoardException("param can't be null");
         }
         switch(updateType){
             case BulletinBoardConstant.UPDATE_COLUMN_ALL:
@@ -144,7 +144,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
             case BulletinBoardConstant.UPDATE_COLUMN_ALL_BY_LIST:
                 List<BaseDO> value = (List<BaseDO>)param;
                 if(value.size() == 0){
-                    throw new IllegalArgumentException("list can't be empty");
+                    throw new BulletinBoardException("list can't be empty");
                 }
                 db.updateDataByList(value);
                 break;
@@ -154,7 +154,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
             case BulletinBoardConstant.UPDATE_COLUMN_SELECTIVE_BY_LIST:
                 List<BaseDO> val = (List<BaseDO>)param;
                 if(val.size() == 0){
-                    throw new IllegalArgumentException("list can't be empty");
+                    throw new BulletinBoardException("list can't be empty");
                 }
                 db.updateDataByListSelective(val);
                 break;

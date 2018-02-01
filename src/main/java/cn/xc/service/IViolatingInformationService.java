@@ -1,7 +1,7 @@
 package cn.xc.service;
 
 import cn.xc.entity.DO.ViolatingInformationDO;
-import cn.xc.exception.CarNumberInvalidException;
+import cn.xc.exception.ViolatingInformationException;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface IViolatingInformationService {
     List<ViolatingInformationDO> findAll();
-    List<ViolatingInformationDO> listViolatingInformationByType(int queryType,Object param);
-    void addViolatingInformation(ViolatingInformationDO value) throws CarNumberInvalidException;
-    void deleteViolatingInformation(ViolatingInformationDO value);
-    void deleteViolatingInformationByList(List<Long> primaryKey);
-    void updateViolatingInformation(ViolatingInformationDO value);
+    List<ViolatingInformationDO> listViolatingInformationByType(int queryType,Object param)throws ViolatingInformationException;
+    void addViolatingInformation(ViolatingInformationDO value) throws ViolatingInformationException;
+    void deleteViolatingInformation(ViolatingInformationDO value)throws ViolatingInformationException;
+    void deleteViolatingInformationByList(List<Long> primaryKey)throws ViolatingInformationException;
+    void updateViolatingInformation(ViolatingInformationDO value)throws ViolatingInformationException;
 }

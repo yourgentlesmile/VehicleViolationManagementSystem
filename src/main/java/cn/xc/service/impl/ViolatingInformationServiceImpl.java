@@ -5,7 +5,7 @@ import cn.xc.dao.IViolatingInformationDAO;
 import cn.xc.dao.condition.ViolatingInformationExample;
 import cn.xc.entity.DO.BaseDO;
 import cn.xc.entity.DO.ViolatingInformationDO;
-import cn.xc.exception.CarNumberInvalidException;
+import cn.xc.exception.ViolatingInformationException;
 import cn.xc.service.IViolatingInformationService;
 import cn.xc.service.constant.ServiceConstant;
 import cn.xc.util.ValidatorUtil;
@@ -47,13 +47,13 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      * @Description: 添加违章信息
      * @param value 待添加的数据
      * @return 添加成功返回true 添加失败返回false
-     * @throws CarNumberInvalidException
+     * @throws ViolatingInformationException
      */
     @Override
-    public void addViolatingInformation(ViolatingInformationDO value) throws CarNumberInvalidException {
+    public void addViolatingInformation(ViolatingInformationDO value) throws ViolatingInformationException {
         boolean isCarNumberValid = ValidatorUtil.checkCarNumberLegality(value.getCarNumber());
         if (isCarNumberValid){
-            throw new CarNumberInvalidException("车牌号格式不正确");
+            throw new ViolatingInformationException("车牌号格式不正确");
         }
         db.insertData(value);
     }
@@ -85,9 +85,9 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      * @return 查询结果集 java.util.List&lt;ViolatingInformationDO&gt;
      */
     @Override
-    public List<ViolatingInformationDO> listViolatingInformationByType(int queryType, Object param) {
+    public List<ViolatingInformationDO> listViolatingInformationByType(int queryType, Object param) throws ViolatingInformationException {
         if(param == null) {
-            throw new IllegalArgumentException("param can't be null");
+            throw new ViolatingInformationException("param can't be null");
         }
         ViolatingInformationExample example = new ViolatingInformationExample();
         ViolatingInformationExample.Criteria criteria = example.createCriteria();
@@ -97,88 +97,88 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
             case ViolatingInformationConstant.QUERY_BY_ID:
                 isParamValid = param instanceof Long;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BY_ID,type of param must be java.lang.Long");
+                    throw new ViolatingInformationException("When queryType is QUERY_BY_ID,type of param must be java.lang.Long");
                 }
                 criteria.andIdEqualTo((Long) param);
                 break;
             case ViolatingInformationConstant.QUERY_BY_IDENTIFIER:
                 isParamValid = param instanceof String;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BY_IDENTIFIER,type of param must be java.lang.String");
+                    throw new ViolatingInformationException("When queryType is QUERY_BY_IDENTIFIER,type of param must be java.lang.String");
                 }
                 criteria.andIdentifierEqualTo((String) param);
                 break;
             case ViolatingInformationConstant.QUERY_BY_VIOLATIONTYPE:
                 isParamValid = param instanceof Integer;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BY_VIOLATIONTYPE,type of param must be java.lang.Integer");
+                    throw new ViolatingInformationException("When queryType is QUERY_BY_VIOLATIONTYPE,type of param must be java.lang.Integer");
                 }
                 criteria.andViolationTypeEqualTo((Integer) param);
                 break;
             case ViolatingInformationConstant.QUERY_BY_CARNUMBER:
                 isParamValid = param instanceof String;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BY_CARNUMBER,type of param must be java.lang.String");
+                    throw new ViolatingInformationException("When queryType is QUERY_BY_CARNUMBER,type of param must be java.lang.String");
                 }
                 criteria.andCarNumberEqualTo((String) param);
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_VIOLATIONTIME:
                 isParamValid = param instanceof List;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BETWEEN_VIOLATIONTIME,type of param must be java.util.List");
+                    throw new ViolatingInformationException("When queryType is QUERY_BETWEEN_VIOLATIONTIME,type of param must be java.util.List");
                 }
                 List<Timestamp> timeScope = (List<Timestamp>) param;
                 if(timeScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + timeScope.size());
+                    throw new ViolatingInformationException("Need two argument，actual the number of argument in list is：" + timeScope.size());
                 }
                 criteria.andViolationTimeBetween(timeScope.get(ServiceConstant.INDEX_START_TIME),timeScope.get(ServiceConstant.INDEX_END_TIME));
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_PENALTYPOINT:
                 isParamValid = param instanceof List;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BETWEEN_PENALTYPOINT,type of param must be java.util.List");
+                    throw new ViolatingInformationException("When queryType is QUERY_BETWEEN_PENALTYPOINT,type of param must be java.util.List");
                 }
                 List<Integer> pointScope = (List<Integer>) param;
                 if(pointScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + pointScope.size());
+                    throw new ViolatingInformationException("Need two argument，actual the number of argument in list is：" + pointScope.size());
                 }
                 criteria.andPenaltyPointBetween(pointScope.get(ServiceConstant.INDEX_START_POINT),pointScope.get(ServiceConstant.INDEX_END_POINT));
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_PENALTYMONEY:
                 isParamValid = param instanceof List;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BETWEEN_PENALTYMONEY,type of param must be java.util.List");
+                    throw new ViolatingInformationException("When queryType is QUERY_BETWEEN_PENALTYMONEY,type of param must be java.util.List");
                 }
                 List<BigDecimal> moneyScope = (List<BigDecimal>) param;
                 if(moneyScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + moneyScope.size());
+                    throw new ViolatingInformationException("Need two argument，actual the number of argument in list is：" + moneyScope.size());
                 }
                 criteria.andPenaltyMoneyBetween(moneyScope.get(ServiceConstant.INDEX_START_PENALTYMONEY),moneyScope.get(ServiceConstant.INDEX_END_PENALTYMONEY));
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_GMTCREATE:
                 isParamValid = param instanceof List;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BETWEEN_VIOLATIONTIME,type of param must be java.util.List");
+                    throw new ViolatingInformationException("When queryType is QUERY_BETWEEN_VIOLATIONTIME,type of param must be java.util.List");
                 }
                 List<Timestamp> createTimeScope = (List<Timestamp>) param;
                 if(createTimeScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + createTimeScope.size());
+                    throw new ViolatingInformationException("Need two argument，actual the number of argument in list is：" + createTimeScope.size());
                 }
                 criteria.andGmtCreateBetween(createTimeScope.get(ServiceConstant.INDEX_START_TIME),createTimeScope.get(ServiceConstant.INDEX_END_TIME));
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_GMTMODIFIED:
                 isParamValid = param instanceof List;
                 if(!isParamValid){
-                    throw new IllegalArgumentException("When queryType is QUERY_BETWEEN_GMTMODIFIED,type of param must be java.util.List");
+                    throw new ViolatingInformationException("When queryType is QUERY_BETWEEN_GMTMODIFIED,type of param must be java.util.List");
                 }
                 List<Timestamp> modifiedTimeScope = (List<Timestamp>) param;
                 if(modifiedTimeScope.size() != 2){
-                    throw new IllegalArgumentException("Need two argument，actual the number of argument in list is：" + modifiedTimeScope.size());
+                    throw new ViolatingInformationException("Need two argument，actual the number of argument in list is：" + modifiedTimeScope.size());
                 }
                 criteria.andGmtModifiedBetween(modifiedTimeScope.get(ServiceConstant.INDEX_START_TIME),modifiedTimeScope.get(ServiceConstant.INDEX_END_TIME));
                 break;
             default:
-                throw new IllegalArgumentException("Query Argument is not within the scope of the definition，actual passed query argument is:" + queryType);
+                throw new ViolatingInformationException("Query Argument is not within the scope of the definition，actual passed query argument is:" + queryType);
         }
         result = db.selectByExample(example);
         return result;

@@ -1,6 +1,7 @@
 package cn.xc.service;
 
 import cn.xc.entity.DO.BulletinBoardDO;
+import cn.xc.exception.BulletinBoardException;
 
 import java.util.List;
 
@@ -16,14 +17,14 @@ public interface IBulletinBoardService {
      * @Description: 添加公告
      * @param value 待添加的数据，包含数据：发布者id，正文，类型
      */
-    void addBulletin(BulletinBoardDO value) throws Exception;
+    void addBulletin(BulletinBoardDO value) throws BulletinBoardException;
     /**
      * @Description: 删除单个公告
      * @param value 待删除的数据
      */
-    void deleteBulletin(BulletinBoardDO value) throws Exception;
+    void deleteBulletin(BulletinBoardDO value) throws BulletinBoardException;
 
-    void deleteBulletinByList(List<BulletinBoardDO> list) throws Exception;
+    void deleteBulletinByList(List<BulletinBoardDO> list) throws BulletinBoardException;
     /**
      * @Description: 查询公告
      * @param queryType 查询方式 0:根据发布者ID, 1:根据公告类型
@@ -31,7 +32,7 @@ public interface IBulletinBoardService {
      * @param param 查询参数，获取所有公告时填null
      * @return 查询结果集 java.util.List&lt;BulletinBoardDO&gt;
      */
-    List<BulletinBoardDO> listDataByCondition(int queryType, String param) throws Exception;
+    List<BulletinBoardDO> listDataByCondition(int queryType, String param) throws BulletinBoardException;
 
     /**
      * @Description: 更新公告
@@ -39,5 +40,5 @@ public interface IBulletinBoardService {
      *                   3:批量部分更新
      * @param param 参数类型可以是单个BulletinBoardDO，也可以是<code>java.util.List&lt;BulletinBoardDO>
      */
-    void updateBulletin(int updateType, Object param) throws Exception;
+    void updateBulletin(int updateType, Object param) throws BulletinBoardException;
 }

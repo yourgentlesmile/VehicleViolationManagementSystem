@@ -6,9 +6,9 @@ package cn.xc.exception;
  * @Author XiongCheng
  * @Date 2018/1/23 17:26.
  */
-public class DAONotExistException extends Exception {
+public class BulletinBoardException extends Exception {
 
-    public DAONotExistException(String message) {
+    public BulletinBoardException(String message) {
         super(message);
     }
 }
