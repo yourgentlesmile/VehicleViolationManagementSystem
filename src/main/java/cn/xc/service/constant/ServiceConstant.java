@@ -17,5 +17,21 @@ public class ServiceConstant {
      * 查询终止时间位于参数列表的下标
      */
     public static final int INDEX_END_TIME = 1;
+    /**
+     * 查询起始分数位于参数列表的下标
+     */
+    public static final int INDEX_START_POINT = 0;
+    /**
+     * 查询终止分数位于参数列表的下标
+     */
+    public static final int INDEX_END_POINT = 1;
+    /**
+     * 查询起始金额位于参数列表的下标
+     */
+    public static final int INDEX_START_PENALTYMONEY = 0;
+    /**
+     * 查询终止金额位于参数列表的下标
+     */
+    public static final int INDEX_END_PENALTYMONEY = 1;
 
 }

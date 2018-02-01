@@ -1,10 +1,15 @@
 package cn.xc.controller;
 
+import cn.xc.entity.RespEntity;
+import cn.xc.enums.RespCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * @version V1.0
@@ -17,8 +22,8 @@ public class testController {
     protected static Logger logger = LoggerFactory.getLogger(testController.class);
     @RequestMapping("/index")
     @ResponseBody
-    public String say(String account, String password){
-        logger.info("account = " + account +"----password = " + password);
-        return account + "----" + password;
+    public RespEntity say(@RequestBody Object list){
+        logger.info(list.toString());
+        return new RespEntity(RespCode.SUCCESS,list instanceof List);
     }
 }

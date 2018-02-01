@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @version V1.0
  * @Description: 数据表violation_information实体类
  * @Author XiongCheng
- * @Timestamp 2018/1/20 13:50.
+ * @Date 2018/1/20 13:50.
  */
 public class ViolatingInformationDO extends BaseDO implements Serializable {
 

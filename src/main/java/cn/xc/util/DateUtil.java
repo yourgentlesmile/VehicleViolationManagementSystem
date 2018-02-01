@@ -1,7 +1,7 @@
 package cn.xc.util;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,11 +11,11 @@ import java.util.List;
  * @Date 2018/1/24 11:54.
  */
 public class DateUtil {
-    public static List<Date> MillisToDateList(String value){
-        List<Date> result = new ArrayList<>();
+    public static List<Timestamp> MillisToDateList(String value){
+        List<Timestamp> result = new ArrayList<>();
         String[] date = value.split(",");
         for (String s : date) {
-            result.add(new Date(Long.parseLong(s)));
+            result.add(new Timestamp(Long.parseLong(s)));
         }
         return result;
     }

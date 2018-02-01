@@ -272,52 +272,52 @@ public class ViolatingInformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeEqualTo(Byte value) {
+        public Criteria andViolationTypeEqualTo(Integer value) {
             addCriterion("violation_type =", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeNotEqualTo(Byte value) {
+        public Criteria andViolationTypeNotEqualTo(Integer value) {
             addCriterion("violation_type <>", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeGreaterThan(Byte value) {
+        public Criteria andViolationTypeGreaterThan(Integer value) {
             addCriterion("violation_type >", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeGreaterThanOrEqualTo(Byte value) {
+        public Criteria andViolationTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("violation_type >=", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeLessThan(Byte value) {
+        public Criteria andViolationTypeLessThan(Integer value) {
             addCriterion("violation_type <", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeLessThanOrEqualTo(Byte value) {
+        public Criteria andViolationTypeLessThanOrEqualTo(Integer value) {
             addCriterion("violation_type <=", value, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeIn(List<Byte> values) {
+        public Criteria andViolationTypeIn(List<Integer> values) {
             addCriterion("violation_type in", values, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeNotIn(List<Byte> values) {
+        public Criteria andViolationTypeNotIn(List<Integer> values) {
             addCriterion("violation_type not in", values, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeBetween(Byte value1, Byte value2) {
+        public Criteria andViolationTypeBetween(Integer value1, Integer value2) {
             addCriterion("violation_type between", value1, value2, "violationType");
             return (Criteria) this;
         }
 
-        public Criteria andViolationTypeNotBetween(Byte value1, Byte value2) {
+        public Criteria andViolationTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("violation_type not between", value1, value2, "violationType");
             return (Criteria) this;
         }
@@ -532,52 +532,52 @@ public class ViolatingInformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointEqualTo(Byte value) {
+        public Criteria andPenaltyPointEqualTo(Integer value) {
             addCriterion("penalty_point =", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointNotEqualTo(Byte value) {
+        public Criteria andPenaltyPointNotEqualTo(Integer value) {
             addCriterion("penalty_point <>", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointGreaterThan(Byte value) {
+        public Criteria andPenaltyPointGreaterThan(Integer value) {
             addCriterion("penalty_point >", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointGreaterThanOrEqualTo(Byte value) {
+        public Criteria andPenaltyPointGreaterThanOrEqualTo(Integer value) {
             addCriterion("penalty_point >=", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointLessThan(Byte value) {
+        public Criteria andPenaltyPointLessThan(Integer value) {
             addCriterion("penalty_point <", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointLessThanOrEqualTo(Byte value) {
+        public Criteria andPenaltyPointLessThanOrEqualTo(Integer value) {
             addCriterion("penalty_point <=", value, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointIn(List<Byte> values) {
+        public Criteria andPenaltyPointIn(List<Integer> values) {
             addCriterion("penalty_point in", values, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointNotIn(List<Byte> values) {
+        public Criteria andPenaltyPointNotIn(List<Integer> values) {
             addCriterion("penalty_point not in", values, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointBetween(Byte value1, Byte value2) {
+        public Criteria andPenaltyPointBetween(Integer value1, Integer value2) {
             addCriterion("penalty_point between", value1, value2, "penaltyPoint");
             return (Criteria) this;
         }
 
-        public Criteria andPenaltyPointNotBetween(Byte value1, Byte value2) {
+        public Criteria andPenaltyPointNotBetween(Integer value1, Integer value2) {
             addCriterion("penalty_point not between", value1, value2, "penaltyPoint");
             return (Criteria) this;
         }
@@ -772,52 +772,52 @@ public class ViolatingInformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedEqualTo(Byte value) {
+        public Criteria andIsDeletedEqualTo(Integer value) {
             addCriterion("is_deleted =", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotEqualTo(Byte value) {
+        public Criteria andIsDeletedNotEqualTo(Integer value) {
             addCriterion("is_deleted <>", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThan(Byte value) {
+        public Criteria andIsDeletedGreaterThan(Integer value) {
             addCriterion("is_deleted >", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsDeletedGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_deleted >=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThan(Byte value) {
+        public Criteria andIsDeletedLessThan(Integer value) {
             addCriterion("is_deleted <", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThanOrEqualTo(Byte value) {
+        public Criteria andIsDeletedLessThanOrEqualTo(Integer value) {
             addCriterion("is_deleted <=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIn(List<Byte> values) {
+        public Criteria andIsDeletedIn(List<Integer> values) {
             addCriterion("is_deleted in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotIn(List<Byte> values) {
+        public Criteria andIsDeletedNotIn(List<Integer> values) {
             addCriterion("is_deleted not in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedBetween(Byte value1, Byte value2) {
+        public Criteria andIsDeletedBetween(Integer value1, Integer value2) {
             addCriterion("is_deleted between", value1, value2, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsDeletedNotBetween(Integer value1, Integer value2) {
             addCriterion("is_deleted not between", value1, value2, "isDeleted");
             return (Criteria) this;
         }

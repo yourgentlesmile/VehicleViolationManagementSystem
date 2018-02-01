@@ -3,7 +3,7 @@ package cn.xc.dao;
 import cn.xc.entity.DO.BaseDO;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -65,14 +65,14 @@ public interface BaseDAO {
      * @param end    结束时间
      * @return       查询到的结果集
      */
-    List<BaseDO> getDataByGmtCreateBetween(@Param("start") Date start, @Param("end") Date end);
+    List<BaseDO> getDataByGmtCreateBetween(@Param("start") Timestamp start, @Param("end") Timestamp end);
     /**
      * @Description: 根据最后修改时间进行区间查询
      * @param start  开始时间
      * @param end    结束时间
      * @return       查询到的结果集
      */
-    List<BaseDO> getDataByGmtModifiedBetween(@Param("start") Date start,@Param("end") Date end);
+    List<BaseDO> getDataByGmtModifiedBetween(@Param("start") Timestamp start,@Param("end") Timestamp end);
     /**
      * @Description: 根据删除标记进行查询
      * @return       查询到的结果集
