@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IViolatingInformationService {
     List<ViolatingInformationDO> findAll();
-    List<ViolatingInformationDO> listViolatingInformationByType(int queryType,Object param)throws ViolatingInformationException;
+    List<ViolatingInformationDO> listViolatingInformationByCondition(int queryType,Object param)throws ViolatingInformationException;
     void addViolatingInformation(ViolatingInformationDO value) throws ViolatingInformationException;
     void deleteViolatingInformation(ViolatingInformationDO value)throws ViolatingInformationException;
     void deleteViolatingInformationByList(List<Long> primaryKey)throws ViolatingInformationException;

@@ -46,7 +46,7 @@ public class BulletinBoardController {
     }
     @PostMapping("/query/{type}")
     @ResponseBody
-    public RespEntity queryBulletin(@PathVariable(value = "type",required = false) int type, @RequestBody String queryParam) throws Exception {
+    public RespEntity queryBulletin(@PathVariable(value = "type") int type, @RequestBody String queryParam) throws Exception {
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(type, queryParam);
         return new RespEntity(RespCode.SUCCESS,list);
     }

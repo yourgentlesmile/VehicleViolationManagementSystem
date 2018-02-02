@@ -85,7 +85,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      * @return 查询结果集 java.util.List&lt;ViolatingInformationDO&gt;
      */
     @Override
-    public List<ViolatingInformationDO> listViolatingInformationByType(int queryType, Object param) throws ViolatingInformationException {
+    public List<ViolatingInformationDO> listViolatingInformationByCondition(int queryType, Object param) throws ViolatingInformationException {
         if(param == null) {
             throw new ViolatingInformationException("param can't be null");
         }
