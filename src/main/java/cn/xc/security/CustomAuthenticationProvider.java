@@ -17,10 +17,17 @@ import org.springframework.stereotype.Component;
  * @Author XiongCheng
  * @Date 2018/2/3 12:23.
  */
-@Component(value = "customAuthenticationProvider")
+@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private IUserDetailService userDetailsService;
+
+    /**
+     * @Description: 验证用户是否正确
+     * @param authentication 需要验证的用户
+     * @return 返回验证成功token
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication authenticate(Authentication authentication)
     throws AuthenticationException {
@@ -28,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         // 下面是验证逻辑，验证通过则返回UsernamePasswordAuthenticationToken，
         // 否则，可直接抛出错误（AuthenticationException的子类，在登录验证不通过重定向至登录页时可通过session.SPRING_SECURITY_LAST_EXCEPTION.message获取具体错误提示信息）
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
-        UserDetails user = userDetailsService.loadUserByUsername(token.getName(),details.getToken());
+        UserDetails user = userDetailsService.loadUserByUsername(token.getName(),details.getUserType());
         if (user == null) {
             throw new UsernameNotFoundException("找不到该用户");
         }

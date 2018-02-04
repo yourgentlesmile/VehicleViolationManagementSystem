@@ -25,7 +25,7 @@ public class CustomWebAuthenticationDetails extends WebAuthenticationDetails {
         userType = request.getParameter(LoginConstant.PARAMETER_USER_TYPE);
     }
 
-    public String getToken() {
+    public String getUserType() {
         return userType;
     }
 

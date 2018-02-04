@@ -1,5 +1,6 @@
 package cn.xc.configure.security;
 
+import cn.xc.constant.RoleNameConstant;
 import cn.xc.security.RestAuthenticationFailureHandler;
 import cn.xc.service.IAdminService;
 import org.slf4j.Logger;
@@ -48,10 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        .antMatchers("/Api/Admin/**").hasRole("ADMIN")
-        .antMatchers("/Admin/**").authenticated()
-        .antMatchers("/Api/User/**").hasRole("USER")
-        .antMatchers("/User/**").authenticated()
+        .antMatchers("/Api/Admin/**","/Admin/**").hasRole(RoleNameConstant.ROLE_ADMIN_FOR_CONFIG)
+        .antMatchers("/Api/User/**","/User/**").hasRole(RoleNameConstant.ROLE_CUSTOM_USER_FOR_CONFIG)
         .anyRequest().permitAll()
         .and()
         .formLogin().loginPage("/login").permitAll()

@@ -1,6 +1,7 @@
 package cn.xc.service.impl;
 
 import cn.xc.constant.LoginConstant;
+import cn.xc.constant.RoleNameConstant;
 import cn.xc.entity.DO.AdminDO;
 import cn.xc.entity.DO.UserDO;
 import cn.xc.service.IAdminService;
@@ -45,7 +46,7 @@ public class UserDetailServiceImpl implements IUserDetailService {
                 throw new UsernameNotFoundException("Username [" + username +"] not found");
             }
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("USER"));
+            authorities.add(new SimpleGrantedAuthority(RoleNameConstant.ROLE_CUSTOM_USER_FOR_DESTRIBUTION));
             return new User(user.getIdentifier(),user.getUserPassword(),authorities);
         }
         else if(LoginConstant.USER_TYPE_ADMIN.equals(userType)){
@@ -54,7 +55,7 @@ public class UserDetailServiceImpl implements IUserDetailService {
                 throw new UsernameNotFoundException("Adminname [" + username +"] not found");
             }
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+            authorities.add(new SimpleGrantedAuthority(RoleNameConstant.ROLE_ADMIN_FOR_DESTRIBUTION));
             return new User(user.getIdentifier(),user.getAdminPassword(),authorities);
 
         }

@@ -4,6 +4,8 @@ import cn.xc.entity.RespEntity;
 import cn.xc.enums.RespCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,15 +27,81 @@ public class testController {
         return "index";
     }
 
-    @GetMapping("")
-    @ResponseBody
-    public RespEntity failurePage(){
-        return new RespEntity(RespCode.SUCCESS,"登录失败");
-    }
     @GetMapping("/success")
     @ResponseBody
     public RespEntity successPage(){
         return new RespEntity(RespCode.SUCCESS,"登录成功");
+    }
+
+    @GetMapping("/Api/User/test")
+    @ResponseBody
+    public String a(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+        return s;
+    }
+    @GetMapping("/User/test")
+    @ResponseBody
+    public String b(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+        return s;
+    }
+    @GetMapping("/Admin/test")
+    @ResponseBody
+    public String c(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+        return s;
+    }
+    @GetMapping("/Api/Admin/test")
+    @ResponseBody
+    public String d(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+        return s;
+    }
+    @GetMapping("/test/test")
+    @ResponseBody
+    public String e(){
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails)principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+        return s;
     }
 
 }
