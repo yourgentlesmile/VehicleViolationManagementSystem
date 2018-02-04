@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Author XiongCheng
  * @Date 2018/1/28 11:40.
  */
-@RequestMapping("/admin")
+@RequestMapping("/Admin")
 @Controller
 public class AdminBasisController {
     private static Logger logger = LoggerFactory.getLogger(AdminBasisController.class);
@@ -52,11 +52,6 @@ public class AdminBasisController {
         boolean result = service.checkIdentifierUnique(identifier);
         return new RespEntity(RespCode.SUCCESS,result);
     }
-    @PostMapping("/login")
-    @ResponseBody
-    public RespEntity login(String identifier,String password){
-        AdminVO result = service.checkPassword(identifier,password);
-        return new RespEntity(RespCode.SUCCESS,result);
-    }
+
 
 }

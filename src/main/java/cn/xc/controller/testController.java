@@ -5,11 +5,8 @@ import cn.xc.enums.RespCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @version V1.0
@@ -20,10 +17,23 @@ import java.util.List;
 @Controller
 public class testController {
     protected static Logger logger = LoggerFactory.getLogger(testController.class);
-    @RequestMapping("/index")
-    @ResponseBody
-    public RespEntity say(@RequestBody Object list){
-        logger.info(list.toString());
-        return new RespEntity(RespCode.SUCCESS,list instanceof List);
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
+        if (error != null) {
+            return "success";
+        }
+        return "index";
     }
+
+    @GetMapping("")
+    @ResponseBody
+    public RespEntity failurePage(){
+        return new RespEntity(RespCode.SUCCESS,"登录失败");
+    }
+    @GetMapping("/success")
+    @ResponseBody
+    public RespEntity successPage(){
+        return new RespEntity(RespCode.SUCCESS,"登录成功");
+    }
+
 }

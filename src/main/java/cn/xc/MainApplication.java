@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.context.request.RequestContextListener;
+
 /**
  * @version V1.0
  * @Description: 启动类
@@ -26,5 +29,9 @@ public class MainApplication extends SpringBootServletInitializer{
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(MainApplication.class);
+    }
+    @Bean
+    public RequestContextListener requestContextListener(){
+        return new RequestContextListener();
     }
 }

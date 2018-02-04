@@ -1,5 +1,6 @@
 package cn.xc.service;
 
+import cn.xc.entity.DO.UserDO;
 import cn.xc.entity.VO.RegisterVO;
 import cn.xc.entity.VO.UserVO;
 
@@ -32,10 +33,9 @@ public interface IUserService {
     /**
      * @Description: 校验密码是否正确
      * @param identifier
-     * @param password
      * @return
      */
-    UserVO checkPassword(String identifier, String password);
+    UserDO findUserByName(String identifier);
 
     /**
      * @Description: 更新密码

@@ -1,5 +1,6 @@
 package cn.xc.service;
 
+import cn.xc.entity.DO.AdminDO;
 import cn.xc.entity.VO.AdminVO;
 import cn.xc.entity.VO.RegisterVO;
 
@@ -35,7 +36,7 @@ public interface IAdminService {
      * @param password
      * @return
      */
-    AdminVO checkPassword(String identifier,String password);
+    AdminDO findUserByName(String identifier);
 
     /**
      * @Description: 更新密码

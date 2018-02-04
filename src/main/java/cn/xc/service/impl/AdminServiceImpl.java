@@ -58,22 +58,16 @@ public class AdminServiceImpl implements IAdminService {
     /**
      * @Description: 校验密码是否正确
      * @param identifier
-     * @param password
      * @return
      */
     @Override
-    public AdminVO checkPassword(String identifier, String password) {
+    public AdminDO findUserByName(String identifier) {
         List<BaseDO> result = db.getDataByIdentifier(identifier);
         if(result.size() == 0){
             return null;
         }
         AdminDO prepare = (AdminDO) result.get(0);
-        if(prepare.getAdminPassword().equals(password)){
-            return new AdminVO(prepare);
-        }else {
-            return null;
-
-        }
+        return prepare;
     }
 
     /**

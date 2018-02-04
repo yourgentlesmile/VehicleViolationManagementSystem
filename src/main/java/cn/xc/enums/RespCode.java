@@ -8,13 +8,15 @@ package cn.xc.enums;
  */
 public enum RespCode {
     SUCCESS(0, "请求成功"),
-    WARN(-1, "网络异常，请稍后重试");
+    WARN(-1, "网络异常，请稍后重试"),
+    LOGINFAILED(-2,"登录失败");
 
     private int code;
     private String msg;
 
     RespCode(int code, String msg) {
         this.msg = msg;
+        this.code = code;
     }
 
     public int getCode() {

@@ -61,22 +61,16 @@ public class UserServiceImpl implements IUserService {
     /**
      * @Description: 校验密码是否正确
      * @param identifier
-     * @param password
      * @return
      */
     @Override
-    public UserVO checkPassword(String identifier, String password) {
+    public UserDO findUserByName(String identifier) {
         List<BaseDO> result = db.getDataByIdentifier(identifier);
         if(result.size() == 0){
             return null;
         }
         UserDO prepare = (UserDO) result.get(0);
-        if(prepare.getUserPassword().equals(password)){
-            return new UserVO(prepare);
-        }else {
-            return null;
-
-        }
+        return prepare;
     }
 
     /**

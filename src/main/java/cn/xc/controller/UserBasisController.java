@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -20,25 +20,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Author XiongCheng
  * @Date 2018/1/17 21:18.
  */
-@RequestMapping("/user")
 @Controller
 public class UserBasisController {
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     private IUserService service;
-    @PostMapping("/add")
+    @PostMapping("/Api/Public/User/register")
     @ResponseBody
     public RespEntity registerAdmin(@RequestBody RegisterVO user){
         service.registerUser(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/update")
+    @PostMapping("/Api/User/update")
     @ResponseBody
     public RespEntity updateAdminInformation(@RequestBody UserVO user){
         service.updateInformation(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/changepwd")
+    @PostMapping("/Api/User/changepwd")
     @ResponseBody
     public RespEntity changePassword(String identifier, String password){
         if(service.updatePassword(identifier,password) == -1){
@@ -46,16 +45,11 @@ public class UserBasisController {
         }
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/checkIdentifier")
+    @GetMapping("/Api/Public/User/checkIdentifier")
     @ResponseBody
     public RespEntity checkIdentifier(String identifier){
         boolean result = service.checkIdentifierUnique(identifier);
         return new RespEntity(RespCode.SUCCESS,result);
     }
-    @PostMapping("/login")
-    @ResponseBody
-    public RespEntity login(String identifier,String password){
-        UserVO result = service.checkPassword(identifier,password);
-        return new RespEntity(RespCode.SUCCESS,result);
-    }
+
 }

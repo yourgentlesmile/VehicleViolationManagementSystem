@@ -21,30 +21,29 @@ import java.util.List;
  * @Date 2018/1/17 21:17.
  */
 @Controller
-@RequestMapping("/BulletinBoard")
 public class BulletinBoardController {
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     IBulletinBoardService bulletinBoardService;
-    @PostMapping("/add")
+    @PostMapping("/Api/BulletinBoard/add")
     @ResponseBody
     public RespEntity addBulletin(@RequestBody BulletinBoardDO value) throws Exception{
         bulletinBoardService.addBulletin(value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/list")
+    @GetMapping("/Api/Public/BulletinBoard/list")
     @ResponseBody
     public RespEntity listBulletin() throws Exception{
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(BulletinBoardConstant.FETCH_ALL,null);
         return new RespEntity(RespCode.SUCCESS,list);
     }
-    @PostMapping("/update")
+    @PostMapping("/Api/BulletinBoard/update")
     @ResponseBody
     public RespEntity updateBulletin(@RequestBody BulletinBoardDO value) throws Exception{
         bulletinBoardService.updateBulletin(BulletinBoardConstant.UPDATE_COLUMN_SELECTIVE,value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/query/{type}")
+    @PostMapping("/Api/Public/query/{type}")
     @ResponseBody
     public RespEntity queryBulletin(@PathVariable(value = "type") int type, @RequestBody String queryParam) throws Exception {
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(type, queryParam);

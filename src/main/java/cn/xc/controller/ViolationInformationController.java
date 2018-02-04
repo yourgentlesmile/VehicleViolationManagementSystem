@@ -33,13 +33,13 @@ public class ViolationInformationController{
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     private IViolatingInformationService service;
-    @PostMapping("/api/VioInformation/add")
+    @PostMapping("/Api/Admin/VioInformation/add")
     @ResponseBody
     public RespEntity addViolatingInformation(@RequestBody ViolatingInformationDO value) throws ViolatingInformationException {
         service.addViolatingInformation(value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/api/VioInformation/delete")
+    @PostMapping("/Api/Admin/VioInformation/delete")
     @ResponseBody
     public RespEntity deleteViolatingInformation(@RequestBody List<ViolatingInformationDO> value) throws ViolatingInformationException{
         List<Long> id = new ArrayList<>();
@@ -49,18 +49,18 @@ public class ViolationInformationController{
         service.deleteViolatingInformationByList(id);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/api/VioInformation/update")
+    @PostMapping("/Api/Admin/VioInformation/update")
     @ResponseBody
     public RespEntity updateViolatingInformation(@RequestBody ViolatingInformationDO value) throws ViolatingInformationException{
         service.updateViolatingInformation(value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/api/VioInformation/list")
+    @GetMapping("/Api/Admin/VioInformation/list")
     @ResponseBody
     public RespEntity listAll(){
         return new RespEntity(RespCode.SUCCESS,service.findAll());
     }
-    @GetMapping("/api/VioInformation/query")
+    @GetMapping("/Api/Admin/VioInformation/query")
     @ResponseBody
     public RespEntity query(HttpServletRequest request) throws ViolatingInformationException {
         int type = Integer.parseInt(request.getParameter("type"));
