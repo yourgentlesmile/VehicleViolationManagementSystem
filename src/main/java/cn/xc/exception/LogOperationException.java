@@ -1,8 +1,8 @@
 package cn.xc.exception;
 
 /**
+ *  操作日志服务异常类
  * @version V1.0
- * @Description: 操作日志服务异常类
  * @Author XiongCheng
  * @Date 2018/2/1 19:03.
  */

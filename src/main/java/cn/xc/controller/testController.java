@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 新想法与功能实验类
  * @version V1.0
- * @Description: 新想法与功能实验类
  * @Author XiongCheng
  * @Date 2018/1/17 16:06.
  */

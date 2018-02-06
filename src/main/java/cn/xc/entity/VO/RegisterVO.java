@@ -2,7 +2,7 @@ package cn.xc.entity.VO;
 
 /**
  * @version V1.0
- * @Description: 注册相关数据对象
+ *  注册相关数据对象
  * @Author XiongCheng
  * @Date 2018/1/28 11:05.
  */

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.util.List;
 /**
- * @Description: message表条件查询类
+ * message表条件查询类
  * 
  * @Author XiongCheng 
  * @version V1.0

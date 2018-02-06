@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 违章信息前端控制类
  * @version V1.0
- * @Description: 违章信息前端控制类
  * @Author XiongCheng
  * @Date 2018/1/17 21:19.
  */

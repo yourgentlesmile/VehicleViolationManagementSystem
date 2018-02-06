@@ -1,10 +1,8 @@
 package cn.xc.service.impl;
 
 import cn.xc.dao.IUserDAO;
-import cn.xc.entity.DO.AdminDO;
 import cn.xc.entity.DO.BaseDO;
 import cn.xc.entity.DO.UserDO;
-import cn.xc.entity.VO.AdminVO;
 import cn.xc.entity.VO.RegisterVO;
 import cn.xc.entity.VO.UserVO;
 import cn.xc.service.IUserService;
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @Description: 用户服务实现类
+ *  用户服务实现类
  * 
  * @Author XiongCheng 
  * @version V1.0
@@ -26,7 +24,7 @@ public class UserServiceImpl implements IUserService {
     private IUserDAO db;
 
     /**
-     * @Description: 用户注册
+     *  用户注册
      * @param user
      */
     @Override
@@ -38,7 +36,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * @Description: 用户更新信息
+     *  用户更新信息
      * @param user 待更新数据
      */
     @Override
@@ -48,7 +46,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * @Description: 获得用户信息
+     *  获得用户信息
      * @param id 用户id
      * @return 获取到的用户信息
      */
@@ -59,7 +57,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * @Description: 校验密码是否正确
+     *  校验密码是否正确
      * @param identifier
      * @return
      */
@@ -76,7 +74,7 @@ public class UserServiceImpl implements IUserService {
     /**
      * @param identifier 账号
      * @param password   密码
-     * @Description: 更新密码
+     *  更新密码
      */
     @Override
     public int updatePassword(String identifier, String password) {
@@ -91,7 +89,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * @Description: 检查用户名是否可用
+     *  检查用户名是否可用
      * @param identifier
      * @return
      */

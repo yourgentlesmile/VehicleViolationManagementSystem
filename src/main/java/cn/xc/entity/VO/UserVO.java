@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * @version V1.0
- * @Description: 传输到前端的user数据对象
+ *  传输到前端的user数据对象
  * @Author XiongCheng
  * @Date 2018/1/29 10:09.
  */

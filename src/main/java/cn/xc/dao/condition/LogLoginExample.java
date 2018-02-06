@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @Description: 登录日志查询条件类
+ * 登录日志查询条件类
  * 
  * @Author XiongCheng 
  * @version V1.0

@@ -1,8 +1,8 @@
 package cn.xc.exception;
 
 /**
+ *  车辆违章异常类
  * @version V1.0
- * @Description: 车牌号异常类
  * @Author XiongCheng
  * @Date 2018/2/1 14:14.
  */

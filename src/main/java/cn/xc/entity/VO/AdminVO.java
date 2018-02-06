@@ -4,7 +4,7 @@ import cn.xc.entity.DO.AdminDO;
 
 /**
  * @version V1.0
- * @Description: 传输到前端的admin数据对象
+ *  传输到前端的admin数据对象
  * @Author XiongCheng
  * @Date 2018/1/28 10:34.
  */

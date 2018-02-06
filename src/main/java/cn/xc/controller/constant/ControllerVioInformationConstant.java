@@ -1,8 +1,8 @@
 package cn.xc.controller.constant;
 
 /**
+ * 违章信息控制层常量类
  * @version V1.0
- * @Description: 违章信息控制层常量类
  * @Author XiongCheng
  * @Date 2018/2/2 10:57.
  */

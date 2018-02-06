@@ -3,8 +3,8 @@ package cn.xc.entity.DO;
 import java.sql.Timestamp;
 
 /**
+ *  数据表实体类基类，包含id，数据记录创建时间，修改时间，逻辑删除标志位
  * @version V1.0
- * @Description: 数据表实体类基类，包含id，数据记录创建时间，修改时间，逻辑删除标志位
  * @Author XiongCheng
  * @Timestamp 2018/1/21 22:45.
  */

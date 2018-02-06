@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
+ * 违章信息数据表操作接口
  * @version V1.0
- * @Description: 违章信息数据表操作接口
  * @Author XiongCheng
  * @Date 2018/1/21 23:20.
  */

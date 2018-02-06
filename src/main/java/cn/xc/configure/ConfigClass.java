@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ImportResource;
 
 /**
  * @version V1.0
- * @Description: 导入applicationcontext.xml配置文件
+ * 导入applicationcontext.xml配置文件
  * @Author XiongCheng
  * @Date 2018/1/17 19:13.
  */

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  BulletinBoard服务测试类
  * @version V1.0
- * @Description: BulletinBoard服务测试类
  * @Author XiongCheng
  * @Date 2018/1/23 21:01.
  */

@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextListener;
 
 /**
+ *  启动类
  * @version V1.0
- * @Description: 启动类
  * @Author XiongCheng
  * @Date 2018/1/17 15:23.
  */

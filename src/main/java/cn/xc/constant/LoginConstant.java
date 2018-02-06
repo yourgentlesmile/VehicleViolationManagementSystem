@@ -1,8 +1,8 @@
 package cn.xc.constant;
 
 /**
+ * 登录相关常量类
  * @version V1.0
- * @Description: 登录相关常量类
  * @Author XiongCheng
  * @Date 2018/2/4 16:43.
  */

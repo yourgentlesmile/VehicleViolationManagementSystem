@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @version V1.0
- * @Description: spring-security配置文件
+ *  spring-security配置文件
  * @Author XiongCheng
  * @Date 2018/2/2 14:22.
  */

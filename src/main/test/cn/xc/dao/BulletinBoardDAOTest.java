@@ -19,8 +19,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ *  公告板DAO接口测试类
  * @version V1.0
- * @Description: 公告板DAO接口测试类
  * @Author XiongCheng
  * @Date 2018/1/22 11:47.
  */

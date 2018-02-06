@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 /**
+ *  用户登录信息认证支持类
  * @version V1.0
- * @Description: 用户登录信息认证支持类
  * @Author XiongCheng
  * @Date 2018/2/3 12:23.
  */
@@ -23,7 +23,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private IUserDetailService userDetailsService;
 
     /**
-     * @Description: 验证用户是否正确
+     *  验证用户是否正确
      * @param authentication 需要验证的用户
      * @return 返回验证成功token
      * @throws AuthenticationException

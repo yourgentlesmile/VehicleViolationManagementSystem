@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  日期转换工具类 可将由逗号分隔的毫秒时间转换成日期数组集合
  * @version V1.0
- * @Description: 日期转换工具类 可将由逗号分隔的毫秒时间转换成日期数组集合
  * @Author XiongCheng
  * @Date 2018/1/24 11:54.
  */

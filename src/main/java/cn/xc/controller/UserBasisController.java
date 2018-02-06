@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 用户基本信息前端控制类
  * @version V1.0
- * @Description: 用户基本信息前端控制类
  * @Author XiongCheng
  * @Date 2018/1/17 21:18.
  */

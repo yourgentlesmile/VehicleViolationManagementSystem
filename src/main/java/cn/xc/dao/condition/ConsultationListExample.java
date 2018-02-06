@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @Description: 咨询单条件查询类
+ * 咨询单条件查询类
  * 
  * @Author XiongCheng 
  * @version V1.0

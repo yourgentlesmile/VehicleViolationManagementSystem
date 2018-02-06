@@ -1,8 +1,8 @@
 package cn.xc.service.constant;
 
 /**
+ * 服务层常量类
  * @version V1.0
- * @Description: 服务层常量类
  * @Author XiongCheng
  * @Date 2018/1/23 17:20.
  */

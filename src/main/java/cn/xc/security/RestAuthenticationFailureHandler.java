@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ *  登录失败操作处理类
  * @version V1.0
- * @Description: 登录失败操作处理类
  * @Author XiongCheng
  * @Date 2018/2/4 16:11.
  */

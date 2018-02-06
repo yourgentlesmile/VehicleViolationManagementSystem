@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  违章信息相关服务实现类
  * @version V1.0
- * @Description: 违章信息相关服务实现类
  * @Author XiongCheng
  * @Date 2018/2/1 12:16.
  */
@@ -30,7 +30,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     IViolatingInformationDAO db;
 
     /**
-     * @Description: 获取所有违章信息
+     *  获取所有违章信息
      * @return 查询结果集
      */
     @Override
@@ -44,7 +44,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     }
 
     /**
-     * @Description: 添加违章信息
+     *  添加违章信息
      * @param value 待添加的数据
      * @return 添加成功返回true 添加失败返回false
      * @throws ViolatingInformationException
@@ -59,7 +59,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     }
 
     /**
-     * @Description: 删除违章信息
+     *  删除违章信息
      * @param value 待删除的信息
      */
     @Override
@@ -68,7 +68,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     }
 
     /**
-     * @Description: 批量删除违章信息
+     *  批量删除违章信息
      * @param primaryKey 待删除的信息集合
      */
     @Override
@@ -77,7 +77,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     }
 
     /**
-     * @Description: 按条件查询违章信息
+     *  按条件查询违章信息
      * @param queryType 查询方式 0:根据ID, 1:根据违章者ID
      *                  2:根据违章类型, 3:根据车牌号, 4:根据违章时间,
      *                  5:根据扣分, 6:根据罚款金额, 7:根据违章记录创建时间, 8:根据记录修改时间
@@ -184,7 +184,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
         return result;
     }
     /**
-     * @Description: 更新违章信息
+     *  更新违章信息
      * @param value 待更新的信息集合
      */
     @Override

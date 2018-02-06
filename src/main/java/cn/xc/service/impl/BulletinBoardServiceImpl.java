@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  公告板服务实现类
  * @version V1.0
- * @Description: 公告板服务实现类
  * @Author XiongCheng
  * @Date 2018/1/23 16:33.
  */
@@ -28,7 +28,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     private IBulletinBoardDAO db;
 
     /**
-     * @Description: 添加公告
+     *  添加公告
      * @param value 待添加的数据，包含数据：发布者id，正文，类型
      */
     @Override
@@ -41,9 +41,9 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     }
 
     /**
-     * @Description: 单个删除公告
+     *  单个删除公告
      * @param value 待删除的数据
-     * @Description: 删除公告
+     *  删除公告
      */
     @Override
     public void deleteBulletin(BulletinBoardDO value) throws BulletinBoardException {
@@ -54,7 +54,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     }
 
     /**
-     * @Description: 批量删除公告
+     *  批量删除公告
      * @param list
      * @throws BulletinBoardException
      */
@@ -72,7 +72,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     }
 
     /**
-     * @Description: 按条件查询公告信息
+     *  按条件查询公告信息
      * @param queryType 查询方式 0:根据发布者ID, 1:根据公告类型
      *                  2:根据创建时间, 3:根据最后修改时间 4:获取所有公告
      * @param param     查询参数
@@ -123,7 +123,7 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
     }
 
     /**
-     * @Description: 按更新条件更新公告信息
+     *  按更新条件更新公告信息
      * @param updateType 更新方式 0:全部更新 1:批量全部更新 2:部分更新(非null字段更新)
      *                   3:批量部分更新
      * @param param      参数类型详情则参看本类静态字段updateType字段

@@ -1,8 +1,8 @@
 package cn.xc.constant;
 
 /**
+ * 公告板功能模块共享常量类
  * @version V1.0
- * @Description: 公告板功能模块共享常量类
  * @Author XiongCheng
  * @Date 2018/1/24 10:42.
  */

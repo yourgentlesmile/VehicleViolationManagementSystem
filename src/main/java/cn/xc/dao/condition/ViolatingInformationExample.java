@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @Description: 违章信息条件查询类
+ * 违章信息条件查询类
  * 
  * @Author XiongCheng 
  * @version V1.0

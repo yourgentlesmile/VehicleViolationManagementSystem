@@ -57,7 +57,7 @@ public class MakeCertPicServicesImpl implements IMakeCertPicService{
         }
         graphics.dispose();
         try {
-        	ImageIO.write(image, "JPEG", os);
+            ImageIO.write(image, "JPEG", os);
         } catch (IOException e) {
             e.printStackTrace();
             return "";

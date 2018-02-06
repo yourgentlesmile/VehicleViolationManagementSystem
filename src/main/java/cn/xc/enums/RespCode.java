@@ -1,8 +1,8 @@
 package cn.xc.enums;
 
 /**
+ *  响应码
  * @version V1.0
- * @Description: 响应码
  * @Author XiongCheng
  * @Date 2018/1/28 13:54.
  */

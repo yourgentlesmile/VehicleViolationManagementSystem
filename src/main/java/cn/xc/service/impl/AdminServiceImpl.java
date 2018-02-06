@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ *  管理员服务实现类
  * @version V1.0
- * @Description: 管理员服务实现类
  * @Author XiongCheng
  * @Date 2018/1/28 10:56.
  */
@@ -23,7 +23,7 @@ public class AdminServiceImpl implements IAdminService {
     private IAdminDAO db;
 
     /**
-     * @Description: 用户注册
+     *  用户注册
      * @param user
      */
     @Override
@@ -35,7 +35,7 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     /**
-     * @Description: 用户更新信息
+     *  用户更新信息
      * @param user 待更新数据
      */
     @Override
@@ -45,7 +45,7 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     /**
-     * @Description: 获得用户信息
+     *  获得用户信息
      * @param id 用户id
      * @return 获取到的用户信息
      */
@@ -56,7 +56,7 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     /**
-     * @Description: 校验密码是否正确
+     *  校验密码是否正确
      * @param identifier
      * @return
      */
@@ -73,7 +73,7 @@ public class AdminServiceImpl implements IAdminService {
     /**
      * @param identifier 账号
      * @param password   密码
-     * @Description: 更新密码
+     *  更新密码
      */
     @Override
     public int updatePassword(String identifier, String password) {
@@ -88,7 +88,7 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     /**
-     * @Description: 检查用户名是否可用
+     *  检查用户名是否可用
      * @param identifier
      * @return
      */

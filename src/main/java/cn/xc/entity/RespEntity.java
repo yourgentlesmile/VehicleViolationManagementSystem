@@ -3,8 +3,8 @@ package cn.xc.entity;
 import cn.xc.enums.RespCode;
 
 /**
+ *  响应报文
  * @version V1.0
- * @Description: 响应报文
  * @Author XiongCheng
  * @Date 2018/1/28 13:50.
  */

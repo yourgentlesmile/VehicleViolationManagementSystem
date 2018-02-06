@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * 公告板前端控制类
  * @version V1.0
- * @Description: 公告板前端控制类
 
  * @Author XiongCheng
  * @Date 2018/1/17 21:17.

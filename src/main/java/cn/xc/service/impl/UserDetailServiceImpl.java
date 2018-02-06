@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *  用户认证服务类，包含认证普通用户登录以及管理员用户
  * @version V1.0
- * @Description: 用户认证服务类，包含认证普通用户登录以及管理员用户
  * @Author XiongCheng
  * @Date 2018/2/2 13:27.
  */

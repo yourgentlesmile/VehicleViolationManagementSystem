@@ -1,9 +1,9 @@
 package cn.xc.constant;
 
 /**
+ * 角色名常量类，如果是配置security配置文件，请使用以CONFIG后缀命名的常量，如果是分配权限，请使用以DESTRIBUTION
+ * 后缀命名的常量
  * @version V1.0
- * @Description: 角色名常量类，如果是配置security配置文件，请使用以CONFIG后缀命名的常量，如果是分配权限，请使用以DESTRIBUTION
- *               后缀命名的常量
  * @Author XiongCheng
  * @Date 2018/2/4 20:08.
  */

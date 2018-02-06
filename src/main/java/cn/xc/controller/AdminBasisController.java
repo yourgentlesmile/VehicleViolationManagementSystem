@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 管理员基本前端控制类
  * @version V1.0
- * @Description: 管理员基本前端控制类
  * @Author XiongCheng
  * @Date 2018/1/28 11:40.
  */

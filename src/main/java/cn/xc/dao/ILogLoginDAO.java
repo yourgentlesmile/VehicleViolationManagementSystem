@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 /**
- * @Description: 登录日志数据表操作接口
+ *  登录日志数据表操作接口
  * 
  * @Author XiongCheng 
  * @version V1.0

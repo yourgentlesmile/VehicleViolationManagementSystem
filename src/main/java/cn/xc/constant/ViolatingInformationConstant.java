@@ -1,8 +1,8 @@
 package cn.xc.constant;
 
 /**
+ * 违章信息常量类
  * @version V1.0
- * @Description: 违章信息常量类
  * @Author XiongCheng
  * @Date 2018/2/1 13:09.
  */

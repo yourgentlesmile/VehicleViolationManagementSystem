@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * @Description: 数据表bulletin_board实体类
+ *  数据表bulletin_board实体类
  * 
  * @Author XiongCheng 
  * @version V1.0

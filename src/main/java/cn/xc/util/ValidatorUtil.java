@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ *  信息校验相关工具类
  * @version V1.0
- * @Description: 信息校验相关工具类
  * @Author XiongCheng
  * @Date 2018/2/1 11:30.
  */
