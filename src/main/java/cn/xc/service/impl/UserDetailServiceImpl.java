@@ -39,7 +39,7 @@ public class UserDetailServiceImpl implements IUserDetailService {
 
     @Override
     public UserDetails loadUserByUsername(String username,String userType) throws UsernameNotFoundException {
-        logger.info("------------IUserDetailService loadUserByUsername invoke");
+        logger.info("------------IUserDetailService loadUserByUsername invoke ,username = " + username + " - userType = " + userType);
         if(LoginConstant.USER_TYPE_CUSTOM_USER.equals(userType)){
             UserDO user = userService.findUserByName(username);
             if(user == null){

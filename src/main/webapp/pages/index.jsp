@@ -17,11 +17,34 @@
     <link rel="stylesheet" type="text/css" href="static/css/local.css"/>
 </head>
 <script type="text/javascript">
-    var serversafecodeimg;
+    var fullxhr;
     function reloadCode() {
         var verify = document.getElementById('captcha');
         verify.setAttribute('src', 'makeCerPic?math=' + Math.random());
     }
+    $.validator.addMethod("checkCaptcha",function(value,element){
+        console.log(value);
+        var checkResult;
+        $.ajax({
+            cache:true,
+            type:"POST",
+            datatype:"json",
+            async:false,
+            contentType: "application/json",
+            url:"/Api/Public/Login/checkCaptcha?code=" + value,
+            data:null,
+            error: function(XMLHttpRequest,textStatus,errorThrown) {
+                alert(alert(XMLHttpRequest.status+"\r\n"+XMLHttpRequest.readyState+"\r\n"+textStatus))
+            },
+            success: function(data,textStatus) {
+                console.log(data);
+                console.log(textStatus);
+                checkResult = data.data;
+            }
+        });
+        console.log("checkresult " + checkResult);
+        return checkResult;
+    },"验证码不正确");
     $().ready(function() {
         reloadCode();
         $(function() {
@@ -35,9 +58,10 @@
                 },
                 debug: true,
                 submitHandler: function(form) {
-                    var user = new formInfo($("#username").val(),$("#password").val(),$("#autoLogin").prop("checked"));
-                    post(user,"Login/LoginCheck","POST");
-                    alert("submiting");
+//                    var user = new formInfo($("#username").val(),$("#password").val(),$("input[name='userType']:checked").val());
+//                    post(user,"/login","POST");
+//                    alert("submiting");
+                    form.submit();
                 },
                 errorElement:'div',
                 rules: {
@@ -49,9 +73,10 @@
                         required:true,
                         rangelength:[6,20]
                     },
-                    safecode: {
+                    captcha: {
                         required:true,
-                        checksafecode:true
+                        rangelength:[4,4],
+                        checkCaptcha:true
                     }
                 },
                 messages: {
@@ -63,18 +88,19 @@
                         required: "请输入密码",
                         rangelength: $.validator.format("密码必须在{0}-{1}个字符")
                     },
-                    safecode: {
-                        required: "请输入验证码"
+                    captcha: {
+                        required: "请输入验证码",
+                        rangelength: $.validator.format("验证码长度不正确{0}")
                     }
                 }
             });
         })
     });
-    function formInfo(username,password,autoLogin) {
+    function formInfo(username,password,userType) {
         var o = {};
         o.username = username;
         o.password = password;
-        o.autoLogin = autoLogin;
+        o.userType = userType;
         return o;
     }
     function post(user,methodURL,method) {
@@ -82,21 +108,16 @@
             cache:true,
             type:method,
             datatype:"json",
-            contentType: "application/json",
             url:methodURL,
-            data:JSON.stringify(user),
+            data:$("#loginForm").serialize(),
             error: function(XMLHttpRequest,textStatus,errorThrown) {
                 alert(alert(XMLHttpRequest.status+"\r\n"+XMLHttpRequest.readyState+"\r\n"+textStatus))
             },
-            success: function(data,textStatus) {
+            success: function(data,textStatus,xhr) {
                 console.log(data);
-                console.log(textStatus);
-                if(data==1 || data == 100){
-                    window.location.href="Mainpage";
-                }
-                else{
-                    window.location.href="Index";
-                };
+                console.log(xhr);
+                fullxhr = xhr;
+                console.log(xhr.getResponseHeader("refer"));
             }
         });
     }
@@ -191,7 +212,7 @@
                         <p>输入用户名与密码登录</p>
                     </div>
                     <div class="form-bottom">
-                        <form id="loginForm">
+                        <form id="loginForm" action="/login" method="POST">
                             <div class="input-group linewidthholder">
                                 <span class="input-group-addon">用户名</span>
                                 <input type="text" class="form-control" placeholder="username" name="username" id="username"/>
@@ -202,15 +223,23 @@
                             </div>
                             <div class="input-group linewidthholder">
                                 <span class="input-group-addon">验证码</span>
-                                <input type="text" class="form-control" name="safecode"/>
+                                <input type="text" class="form-control" name="captcha"/>
                                 <span class="input-group-addon" style="margin: 0;padding: 0;width: 68px;height: 34.333334px;">
                                             <img src="" onclick="reloadCode()" id="captcha" style="cursor: pointer;width: 67px;height: 32px;"/>
                                         </span>
                             </div>
-                            <div class="input-group linewidthholder" >
-                                <input type="checkbox" name="autoLogin" id="autoLogin"/>下次自动登录<br />
+                            <div class="input-group linewidthholder col-sm-12">
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType" id="customUser" value="0" checked> 用户
+                                </label>
+                                <label class="radio-inline" >
+                                    <input type="radio" name="userType" id="adminUser" value="1"> 管理员
+                                </label>
                             </div>
-                            <button type="submit" onclick="javascript:void(0);" class="btn btn-info btn-lg btn-block submit-holder">登录</button>
+                            <%--<div class="input-group linewidthholder" >--%>
+                                <%--<input type="checkbox" name="autoLogin" id="autoLogin"/>下次自动登录<br />--%>
+                            <%--</div>--%>
+                            <button type="submit"  class="btn btn-info btn-lg btn-block submit-holder">登录</button>
                         </form>
                     </div>
 
@@ -219,6 +248,8 @@
         </div>
     </div>
 </div>
-<footer class="footer navbar-fixed-bottom footfont">CopyRight 2017 xxx xxx xxx <span class="glyphicon-envelope"></span>Contect us :123456789@QQ.com</footer>
+<footer class="footer navbar-fixed-bottom footfont">CopyRight 2017 xxx xxx xxx
+    <span class="glyphicon-envelope"/>Contect us :123456789@QQ.com
+</footer>
 </body>
 </html>

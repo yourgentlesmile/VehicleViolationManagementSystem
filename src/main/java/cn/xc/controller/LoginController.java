@@ -30,7 +30,7 @@ public class LoginController {
     public String getPic() {
         return "makeCerPic";
     }
-    @PostMapping("/checkCaptcha")
+    @PostMapping("/Api/Public/Login/checkCaptcha")
     @ResponseBody
     public RespEntity checkCaptcha(@RequestParam(name = "code",required = false) String code, HttpServletRequest request) {
         String validCode = (String) request.getSession().getAttribute(LoginConstant.PARAMETER_CAPTCHA);

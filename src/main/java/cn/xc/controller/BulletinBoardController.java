@@ -25,7 +25,7 @@ public class BulletinBoardController {
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     IBulletinBoardService bulletinBoardService;
-    @PostMapping("/Api/BulletinBoard/add")
+    @PostMapping("/Api/Admin/BulletinBoard/add")
     @ResponseBody
     public RespEntity addBulletin(@RequestBody BulletinBoardDO value) throws Exception{
         bulletinBoardService.addBulletin(value);
@@ -37,13 +37,13 @@ public class BulletinBoardController {
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(BulletinBoardConstant.FETCH_ALL,null);
         return new RespEntity(RespCode.SUCCESS,list);
     }
-    @PostMapping("/Api/BulletinBoard/update")
+    @PostMapping("/Api/Admin/BulletinBoard/update")
     @ResponseBody
     public RespEntity updateBulletin(@RequestBody BulletinBoardDO value) throws Exception{
         bulletinBoardService.updateBulletin(BulletinBoardConstant.UPDATE_COLUMN_SELECTIVE,value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/Public/query/{type}")
+    @PostMapping("/Api/Public/BulletinBoard/query/{type}")
     @ResponseBody
     public RespEntity queryBulletin(@PathVariable(value = "type") int type, @RequestBody String queryParam) throws Exception {
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(type, queryParam);

@@ -26,19 +26,19 @@ public class AdminBasisController {
     private static Logger logger = LoggerFactory.getLogger(AdminBasisController.class);
     @Autowired
     private IAdminService service;
-    @PostMapping("/add")
+    @PostMapping("/Api/Public/Admin/register")
     @ResponseBody
     public RespEntity registerAdmin(@RequestBody RegisterVO user){
         service.registerAdmin(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/update")
+    @PostMapping("/Api/Admin/update")
     @ResponseBody
     public RespEntity updateAdminInformation(@RequestBody AdminVO user){
         service.updateInformation(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/changepwd")
+    @PostMapping("/Api/Admin/changepwd")
     @ResponseBody
     public RespEntity changePassword(String identifier, String password){
         if(service.updatePassword(identifier,password) == -1){
@@ -46,7 +46,7 @@ public class AdminBasisController {
         }
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/checkIdentifier")
+    @PostMapping("/Api/Public/Admin/checkIdentifier")
     @ResponseBody
     public RespEntity checkIdentifier(String identifier){
         boolean result = service.checkIdentifierUnique(identifier);

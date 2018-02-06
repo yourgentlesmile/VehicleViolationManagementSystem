@@ -60,7 +60,7 @@ public class ViolationInformationController{
     public RespEntity listAll(){
         return new RespEntity(RespCode.SUCCESS,service.findAll());
     }
-    @GetMapping("/Api/Admin/VioInformation/query")
+    @GetMapping("/Api/Public/VioInformation/query")
     @ResponseBody
     public RespEntity query(HttpServletRequest request) throws ViolatingInformationException {
         int type = Integer.parseInt(request.getParameter("type"));

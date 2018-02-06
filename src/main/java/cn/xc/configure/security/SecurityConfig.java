@@ -2,7 +2,6 @@ package cn.xc.configure.security;
 
 import cn.xc.constant.RoleNameConstant;
 import cn.xc.security.RestAuthenticationFailureHandler;
-import cn.xc.service.IAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
-    @Autowired
-    private IAdminService adminService;
     @Autowired
     private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
     @Autowired
