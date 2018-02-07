@@ -2,6 +2,7 @@ package cn.xc.configure.security;
 
 import cn.xc.constant.RoleNameConstant;
 import cn.xc.security.RestAuthenticationFailureHandler;
+import cn.xc.security.RestAuthenticationSuccessHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .formLogin().loginPage("/login").permitAll()
         .loginProcessingUrl("/login")
         .failureHandler(new RestAuthenticationFailureHandler())
+        .successHandler(new RestAuthenticationSuccessHandler())
         .authenticationDetailsSource(authenticationDetailsSource)
         .and().csrf().disable();
     }

@@ -1,7 +1,7 @@
 package cn.xc.controller;
 
 import cn.xc.constant.ViolatingInformationConstant;
-import cn.xc.controller.constant.ControllerVioInformationConstant;
+import cn.xc.controller.constant.ControllerQueryConstant;
 import cn.xc.entity.DO.ViolatingInformationDO;
 import cn.xc.entity.RespEntity;
 import cn.xc.enums.RespCode;
@@ -67,17 +67,17 @@ public class ViolationInformationController{
         List<ViolatingInformationDO> result = null;
         switch (type){
             case ViolatingInformationConstant.QUERY_BY_ID:
-                Long id = Long.parseLong(request.getParameter(ControllerVioInformationConstant.QUERY_SINGLE_PARAM));
+                Long id = Long.parseLong(request.getParameter(ControllerQueryConstant.QUERY_SINGLE_PARAM));
                 result = service.listViolatingInformationByCondition(type,id);
                 break;
             case ViolatingInformationConstant.QUERY_BY_VIOLATIONTYPE:
-                int vioType = Integer.parseInt(request.getParameter(ControllerVioInformationConstant.QUERY_SINGLE_PARAM));
+                int vioType = Integer.parseInt(request.getParameter(ControllerQueryConstant.QUERY_SINGLE_PARAM));
                 result = service.listViolatingInformationByCondition(type,vioType);
                 break;
             //由于参数都为String类型，所以情况做合并处理
             case ViolatingInformationConstant.QUERY_BY_IDENTIFIER:
             case ViolatingInformationConstant.QUERY_BY_CARNUMBER:
-                String param = request.getParameter(ControllerVioInformationConstant.QUERY_SINGLE_PARAM);
+                String param = request.getParameter(ControllerQueryConstant.QUERY_SINGLE_PARAM);
                 result = service.listViolatingInformationByCondition(type,param);
                 break;
             //由于参数都为List<Timestamp>类型，所以情况做合并处理
@@ -85,24 +85,24 @@ public class ViolationInformationController{
             case ViolatingInformationConstant.QUERY_BETWEEN_GMTCREATE:
             case ViolatingInformationConstant.QUERY_BETWEEN_GMTMODIFIED:
                 List<Timestamp> paramList = new ArrayList<>();
-                Long millisecondsStart = Long.parseLong(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_START));
-                Long millisecondsEnd = Long.parseLong(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_END));
+                Long millisecondsStart = Long.parseLong(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_START));
+                Long millisecondsEnd = Long.parseLong(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_END));
                 paramList.add(new Timestamp(millisecondsStart));
                 paramList.add(new Timestamp(millisecondsEnd));
                 result = service.listViolatingInformationByCondition(type,paramList);
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_PENALTYPOINT:
                 List<Integer> point = new ArrayList<>();
-                int pointStart = Integer.parseInt(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_START));
-                int pointEnd = Integer.parseInt(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_END));
+                int pointStart = Integer.parseInt(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_START));
+                int pointEnd = Integer.parseInt(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_END));
                 point.add(pointStart);
                 point.add(pointEnd);
                 result = service.listViolatingInformationByCondition(type,point);
                 break;
             case ViolatingInformationConstant.QUERY_BETWEEN_PENALTYMONEY:
                 List<BigDecimal> money = new ArrayList<>();
-                BigDecimal moneyStart = new BigDecimal(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_START));
-                BigDecimal moneyEnd = new BigDecimal(request.getParameter(ControllerVioInformationConstant.QUERY_PARAM_SCOPE_END));
+                BigDecimal moneyStart = new BigDecimal(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_START));
+                BigDecimal moneyEnd = new BigDecimal(request.getParameter(ControllerQueryConstant.QUERY_PARAM_SCOPE_END));
                 money.add(moneyStart);
                 money.add(moneyEnd);
                 result = service.listViolatingInformationByCondition(type,money);

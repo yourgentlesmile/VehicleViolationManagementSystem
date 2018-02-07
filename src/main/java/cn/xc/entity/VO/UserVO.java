@@ -5,8 +5,8 @@ import cn.xc.entity.DO.UserDO;
 import java.sql.Timestamp;
 
 /**
- * @version V1.0
  *  传输到前端的user数据对象
+ * @version V1.0
  * @Author XiongCheng
  * @Date 2018/1/29 10:09.
  */

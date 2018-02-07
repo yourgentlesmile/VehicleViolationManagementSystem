@@ -6,7 +6,7 @@ package cn.xc.controller.constant;
  * @Author XiongCheng
  * @Date 2018/2/2 10:57.
  */
-public class ControllerVioInformationConstant {
+public class ControllerQueryConstant {
     public static final String QUERY_PARAM_SCOPE_START = "start";
     public static final String QUERY_PARAM_SCOPE_END = "end";
     public static final String QUERY_SINGLE_PARAM = "param";

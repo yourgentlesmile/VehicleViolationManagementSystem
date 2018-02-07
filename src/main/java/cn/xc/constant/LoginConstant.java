@@ -13,6 +13,8 @@ public final class LoginConstant {
     public static final String PARAMETER_USERNAME = "username";
     public static final String PARAMETER_PASSWORD = "password";
     public static final String PARAMETER_CAPTCHA = "certCode";
+    public static final String SESSION_USER_ID = "userID";
+    public static final String SESSION_USER_TYPE = "userType";
 
 
 }

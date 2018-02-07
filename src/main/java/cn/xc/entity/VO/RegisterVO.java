@@ -1,8 +1,8 @@
 package cn.xc.entity.VO;
 
 /**
- * @version V1.0
  *  注册相关数据对象
+ * @version V1.0
  * @Author XiongCheng
  * @Date 2018/1/28 11:05.
  */

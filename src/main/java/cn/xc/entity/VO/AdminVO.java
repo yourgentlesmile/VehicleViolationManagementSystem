@@ -3,8 +3,8 @@ package cn.xc.entity.VO;
 import cn.xc.entity.DO.AdminDO;
 
 /**
- * @version V1.0
  *  传输到前端的admin数据对象
+ * @version V1.0
  * @Author XiongCheng
  * @Date 2018/1/28 10:34.
  */
