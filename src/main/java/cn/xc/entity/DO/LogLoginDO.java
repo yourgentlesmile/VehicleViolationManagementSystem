@@ -14,7 +14,7 @@ public class LogLoginDO implements Serializable {
     private Long id;
 
     /**
-     * 用户登录IP
+     * 用户登录ID
      */
     private Long loginUserId;
 
