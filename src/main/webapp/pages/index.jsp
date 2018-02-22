@@ -27,11 +27,11 @@
         var checkResult;
         $.ajax({
             cache:true,
-            type:"POST",
+            type:"GET",
             datatype:"json",
             async:false,
             contentType: "application/json",
-            url:"/Api/Public/Login/checkCaptcha?code=" + value,
+            url:"/Api/Public/Login/checkCaptcha/" + value,
             data:null,
             error: function(XMLHttpRequest,textStatus,errorThrown) {
                 alert(alert(XMLHttpRequest.status+"\r\n"+XMLHttpRequest.readyState+"\r\n"+textStatus))

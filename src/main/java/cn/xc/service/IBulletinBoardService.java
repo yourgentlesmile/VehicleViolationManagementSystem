@@ -24,7 +24,7 @@ public interface IBulletinBoardService {
      */
     void deleteBulletin(BulletinBoardDO value) throws BulletinBoardException;
 
-    void deleteBulletinByList(List<BulletinBoardDO> list) throws BulletinBoardException;
+    void deleteBulletinByList(List<Long> list) throws BulletinBoardException;
     /**
      *  查询公告
      * @param queryType 查询方式 0:根据发布者ID, 1:根据公告类型

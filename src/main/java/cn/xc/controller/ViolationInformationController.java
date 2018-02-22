@@ -11,10 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -39,7 +36,7 @@ public class ViolationInformationController{
         service.addViolatingInformation(value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/Admin/VioInformation/delete")
+    @DeleteMapping("/Api/Admin/VioInformation/delete")
     @ResponseBody
     public RespEntity deleteViolatingInformation(@RequestBody List<ViolatingInformationDO> value) throws ViolatingInformationException{
         List<Long> id = new ArrayList<>();
@@ -49,7 +46,7 @@ public class ViolationInformationController{
         service.deleteViolatingInformationByList(id);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/Admin/VioInformation/update")
+    @PutMapping("/Api/Admin/VioInformation/update")
     @ResponseBody
     public RespEntity updateViolatingInformation(@RequestBody ViolatingInformationDO value) throws ViolatingInformationException{
         service.updateViolatingInformation(value);
@@ -60,10 +57,9 @@ public class ViolationInformationController{
     public RespEntity listAll(){
         return new RespEntity(RespCode.SUCCESS,service.findAll());
     }
-    @GetMapping("/Api/Public/VioInformation/query")
+    @GetMapping("/Api/Public/VioInformation/query/{type}")
     @ResponseBody
-    public RespEntity query(HttpServletRequest request) throws ViolatingInformationException {
-        int type = Integer.parseInt(request.getParameter("type"));
+    public RespEntity query(@PathVariable("type") Integer type,HttpServletRequest request) throws ViolatingInformationException {
         List<ViolatingInformationDO> result = null;
         switch (type){
             case ViolatingInformationConstant.QUERY_BY_ID:

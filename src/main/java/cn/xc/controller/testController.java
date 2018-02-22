@@ -89,19 +89,20 @@ public class testController {
         String s = userName + ((UserDetails)principal).getAuthorities().toString();
         return s;
     }
-    @GetMapping("/test/test")
+    @GetMapping("/test/test/{q}")
     @ResponseBody
-    public String e(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        String s = userName + ((UserDetails)principal).getAuthorities().toString();
-        return s;
+    public RespEntity e(@PathVariable(value = "q",required = false) String value){
+        return new RespEntity(RespCode.SUCCESS,value);
+//        String userName = null;
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        if (principal instanceof UserDetails) {
+//            userName = ((UserDetails)principal).getUsername();
+//        } else {
+//            userName = principal.toString();
+//        }
+//        String s = userName + ((UserDetails)principal).getAuthorities().toString();
+//        return s;
     }
 
 }

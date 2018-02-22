@@ -4,6 +4,7 @@ import cn.xc.constant.BulletinBoardConstant;
 import cn.xc.entity.DO.BulletinBoardDO;
 import cn.xc.entity.RespEntity;
 import cn.xc.enums.RespCode;
+import cn.xc.exception.BulletinBoardException;
 import cn.xc.service.IBulletinBoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,29 +26,34 @@ public class BulletinBoardController {
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     IBulletinBoardService bulletinBoardService;
-    @PostMapping("/Api/Admin/BulletinBoard/add")
+
+    @PostMapping("/Api/Admin/BulletinBoard")
     @ResponseBody
-    public RespEntity addBulletin(@RequestBody BulletinBoardDO value) throws Exception{
+    public RespEntity addBulletin(@RequestBody BulletinBoardDO value) throws BulletinBoardException{
         bulletinBoardService.addBulletin(value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/Api/Public/BulletinBoard/list")
+    @PutMapping("/Api/Admin/BulletinBoard")
     @ResponseBody
-    public RespEntity listBulletin() throws Exception{
-        List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(BulletinBoardConstant.FETCH_ALL,null);
-        return new RespEntity(RespCode.SUCCESS,list);
-    }
-    @PostMapping("/Api/Admin/BulletinBoard/update")
-    @ResponseBody
-    public RespEntity updateBulletin(@RequestBody BulletinBoardDO value) throws Exception{
+    public RespEntity updateBulletin(@RequestBody BulletinBoardDO value) throws BulletinBoardException{
         bulletinBoardService.updateBulletin(BulletinBoardConstant.UPDATE_COLUMN_SELECTIVE,value);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/Public/BulletinBoard/query/{type}")
+    @GetMapping("/Api/Public/BulletinBoard/{type}/{param}")
     @ResponseBody
-    public RespEntity queryBulletin(@PathVariable(value = "type") int type, @RequestBody String queryParam) throws Exception {
+    public RespEntity queryBulletin(@PathVariable(value = "type") int type,
+                                    @PathVariable(value = "param",required = false) String queryParam) throws BulletinBoardException {
+        if (type != BulletinBoardConstant.FETCH_ALL && queryParam == null) {
+            return new RespEntity(RespCode.SUCCESS,null);
+        }
         List<BulletinBoardDO> list = bulletinBoardService.listDataByCondition(type, queryParam);
         return new RespEntity(RespCode.SUCCESS,list);
+    }
+    @DeleteMapping("/Api/Admin/BulletinBoard")
+    @ResponseBody
+    public RespEntity deleteBulletin(@RequestBody List<Long> preDeleteIndex) throws BulletinBoardException {
+        bulletinBoardService.deleteBulletinByList(preDeleteIndex);
+        return new RespEntity(RespCode.SUCCESS,true);
     }
 
 }

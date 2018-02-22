@@ -3,7 +3,6 @@ package cn.xc.service.impl;
 import cn.xc.constant.ViolatingInformationConstant;
 import cn.xc.dao.IViolatingInformationDAO;
 import cn.xc.dao.condition.ViolatingInformationExample;
-import cn.xc.entity.DO.BaseDO;
 import cn.xc.entity.DO.ViolatingInformationDO;
 import cn.xc.exception.ViolatingInformationException;
 import cn.xc.service.IViolatingInformationService;
@@ -35,11 +34,12 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      */
     @Override
     public List<ViolatingInformationDO> findAll() {
-        List<BaseDO> raw = db.findAll();
+        ViolatingInformationExample example = new ViolatingInformationExample();
+        ViolatingInformationExample.Criteria criteria = example.createCriteria();
+        criteria.andIsDeletedEqualTo(0);
+
+        List<ViolatingInformationDO> raw = db.selectByExample(example);
         List<ViolatingInformationDO> result =  new ArrayList<>();
-        for (BaseDO baseDO : raw) {
-            result.add((ViolatingInformationDO) baseDO);
-        }
         return result;
     }
 
@@ -55,7 +55,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
         if (isCarNumberValid){
             throw new ViolatingInformationException("车牌号格式不正确");
         }
-        db.insertData(value);
+        db.insert(value);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      */
     @Override
     public void deleteViolatingInformation(ViolatingInformationDO value) {
-        db.deleteDataByPrimaryKey(value.getId());
+        db.deleteByPrimaryKey(value.getId());
     }
 
     /**
@@ -73,7 +73,7 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      */
     @Override
     public void deleteViolatingInformationByList(List<Long> primaryKey) {
-        db.deleteDataByList(primaryKey);
+        db.deleteByPrimaryKeyList(primaryKey);
     }
 
     /**
@@ -189,6 +189,6 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
      */
     @Override
     public void updateViolatingInformation(ViolatingInformationDO value) {
-        db.updateData(value);
+        db.updateByPrimaryKey(value);
     }
 }

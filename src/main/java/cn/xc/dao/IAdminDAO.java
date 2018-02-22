@@ -10,7 +10,7 @@ import java.util.List;
  * @Author XiongCheng
  * @Date 2018/1/20 14:31.
  */
-public interface IAdminDAO extends BaseDAO{
+public interface IAdminDAO extends IBaseDAO {
 
     /**
      *  根据管理员账号查找

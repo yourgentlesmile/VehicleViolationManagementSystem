@@ -10,9 +10,7 @@ import cn.xc.exception.ConsultationListException;
 import cn.xc.service.IConsultationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,19 +39,19 @@ public class ConsultationListController {
         service.createNewConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/User/ConsultationList/update")
+    @PutMapping("/Api/User/ConsultationList/update")
     @ResponseBody
     public RespEntity updateConsultationList(ConsultationListDO form) throws ConsultationListException {
         service.updateConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/User/ConsultationList/response")
+    @PutMapping("/Api/User/ConsultationList/response")
     @ResponseBody
     public RespEntity responseConsultationList(ConsultationListDO form) throws ConsultationListException {
         service.responseConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/User/ConsultationList/delete")
+    @DeleteMapping("/Api/User/ConsultationList/delete")
     @ResponseBody
     public RespEntity deleteConsultationList(List<ConsultationListDO> value) throws ConsultationListException {
         List<Long> id = new ArrayList<>();
@@ -63,10 +61,9 @@ public class ConsultationListController {
         service.deleteConsultation(id);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/Api/User/ConsultationList/list")
+    @GetMapping("/Api/User/ConsultationList/list/{type}")
     @ResponseBody
-    public RespEntity queryByCondition(HttpServletRequest request) throws ConsultationListException{
-        int type = Integer.parseInt(request.getParameter("type"));
+    public RespEntity queryByCondition(@PathVariable(value = "type") Integer type,HttpServletRequest request) throws ConsultationListException{
         List<ConsultationListDO> result = null;
         switch (type){
             case ConsultationListConstant.QUERY_BY_ID:
@@ -96,6 +93,12 @@ public class ConsultationListController {
             default:
                 throw new ConsultationListException("查询种类参数不在既定范围中");
         }
+        return new RespEntity(RespCode.SUCCESS,result);
+    }
+    @GetMapping("/Api/User/ConsultationList/list")
+    @ResponseBody
+    public RespEntity listAll(HttpServletRequest request) throws ConsultationListException{
+        List<ConsultationListDO> result = service.findAll();
         return new RespEntity(RespCode.SUCCESS,result);
     }
 }

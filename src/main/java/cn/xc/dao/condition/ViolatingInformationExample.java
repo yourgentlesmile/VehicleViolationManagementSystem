@@ -4,13 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-/**
- * 违章信息条件查询类
- * 
- * @Author XiongCheng 
- * @version V1.0
- * @Date 2018/1/30 12:23.
- */
+
 public class ViolatingInformationExample {
     protected String orderByClause;
 
@@ -259,6 +253,66 @@ public class ViolatingInformationExample {
 
         public Criteria andIdentifierNotBetween(String value1, String value2) {
             addCriterion("identifier not between", value1, value2, "identifier");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeIsNull() {
+            addCriterion("car_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeIsNotNull() {
+            addCriterion("car_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeEqualTo(Integer value) {
+            addCriterion("car_type =", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeNotEqualTo(Integer value) {
+            addCriterion("car_type <>", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeGreaterThan(Integer value) {
+            addCriterion("car_type >", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("car_type >=", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeLessThan(Integer value) {
+            addCriterion("car_type <", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("car_type <=", value, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeIn(List<Integer> values) {
+            addCriterion("car_type in", values, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeNotIn(List<Integer> values) {
+            addCriterion("car_type not in", values, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeBetween(Integer value1, Integer value2) {
+            addCriterion("car_type between", value1, value2, "carType");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("car_type not between", value1, value2, "carType");
             return (Criteria) this;
         }
 

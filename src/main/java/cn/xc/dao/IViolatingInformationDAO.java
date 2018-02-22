@@ -12,18 +12,28 @@ import java.util.List;
  * @Author XiongCheng
  * @Date 2018/1/21 23:20.
  */
-public interface IViolatingInformationDAO extends BaseDAO {
+public interface IViolatingInformationDAO {
     long countByExample(ViolatingInformationExample example);
 
     int deleteByExample(ViolatingInformationExample example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(ViolatingInformationDO record);
 
     int insertSelective(ViolatingInformationDO record);
 
     List<ViolatingInformationDO> selectByExample(ViolatingInformationExample example);
 
+    ViolatingInformationDO selectByPrimaryKey(Long id);
+
     int updateByExampleSelective(@Param("record") ViolatingInformationDO record, @Param("example") ViolatingInformationExample example);
 
     int updateByExample(@Param("record") ViolatingInformationDO record, @Param("example") ViolatingInformationExample example);
 
+    int updateByPrimaryKeySelective(ViolatingInformationDO record);
 
+    int updateByPrimaryKey(ViolatingInformationDO record);
+
+    void deleteByPrimaryKeyList(List<Long> primaryKey);
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * @Author XiongCheng
  * @Date 2018/1/21 22:30.
  */
-public interface IBulletinBoardDAO extends BaseDAO{
+public interface IBulletinBoardDAO extends IBaseDAO {
     /**
      *  根据发布者ID进行查询
      * @param publishId 发布者ID

@@ -10,7 +10,7 @@ import java.util.List;
  * @Author XiongCheng
  * @Date 2018/1/21 23:20.
  */
-public interface IUserDAO extends BaseDAO {
+public interface IUserDAO extends IBaseDAO {
     /**
      *  根据管理员账号查找
      * @param identifier 管理员账号

@@ -5,17 +5,17 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- * @version V1.0
- *  数据表violation_information实体类
- * @Author XiongCheng
- * @Date 2018/1/20 13:50.
+ * @author
  */
-public class ViolatingInformationDO extends BaseDO implements Serializable {
+public class ViolatingInformationDO implements Serializable {
+    private Long id;
 
     /**
      * 违章编号
      */
     private String identifier;
+
+    private Integer carType;
 
     /**
      * 违章类型
@@ -48,10 +48,21 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
     private BigDecimal penaltyMoney;
 
     /**
-     * 表名
+     * 创建时间
      */
-    public static final String TABLE_NAME = "violation_information";
-    private static final long serialVersionUID = 8L;
+    private Timestamp gmtCreate;
+
+    /**
+     * 最后修改时间
+     */
+    private Timestamp gmtModified;
+
+    /**
+     * 是否被删除,1:已删除 0:未删除
+     */
+    private Integer isDeleted;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;
@@ -67,6 +78,14 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public Integer getCarType() {
+        return carType;
+    }
+
+    public void setCarType(Integer carType) {
+        this.carType = carType;
     }
 
     public Integer getViolationType() {
@@ -155,6 +174,7 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
         ViolatingInformationDO other = (ViolatingInformationDO) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
         && (this.getIdentifier() == null ? other.getIdentifier() == null : this.getIdentifier().equals(other.getIdentifier()))
+        && (this.getCarType() == null ? other.getCarType() == null : this.getCarType().equals(other.getCarType()))
         && (this.getViolationType() == null ? other.getViolationType() == null : this.getViolationType().equals(other.getViolationType()))
         && (this.getViolationTime() == null ? other.getViolationTime() == null : this.getViolationTime().equals(other.getViolationTime()))
         && (this.getDetail() == null ? other.getDetail() == null : this.getDetail().equals(other.getDetail()))
@@ -172,6 +192,7 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getIdentifier() == null) ? 0 : getIdentifier().hashCode());
+        result = prime * result + ((getCarType() == null) ? 0 : getCarType().hashCode());
         result = prime * result + ((getViolationType() == null) ? 0 : getViolationType().hashCode());
         result = prime * result + ((getViolationTime() == null) ? 0 : getViolationTime().hashCode());
         result = prime * result + ((getDetail() == null) ? 0 : getDetail().hashCode());
@@ -192,6 +213,7 @@ public class ViolatingInformationDO extends BaseDO implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", identifier=").append(identifier);
+        sb.append(", carType=").append(carType);
         sb.append(", violationType=").append(violationType);
         sb.append(", violationTime=").append(violationTime);
         sb.append(", detail=").append(detail);

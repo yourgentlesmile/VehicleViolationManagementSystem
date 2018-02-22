@@ -115,8 +115,8 @@
 
     <!--删除操作-->
     <update id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    UPDATE log_login SET is_deleted = 1, gmt_modified = NOW() where id = #{id,jdbcType=BIGINT} and is_deleted = 0
-  </update>
+        UPDATE log_login SET is_deleted = 1, gmt_modified = NOW() where id = #{id,jdbcType=BIGINT} and is_deleted = 0
+    </update>
     <update id="deleteByExample" parameterType="cn.xc.dao.condition.LogLoginExample">
         UPDATE log_login SET is_deleted = 1, gmt_modified = NOW()
         <if test="_parameter != null">

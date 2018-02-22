@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * todo
+ * 登录前端控制类
  *
  * @version V1.0
  * @Author XiongCheng

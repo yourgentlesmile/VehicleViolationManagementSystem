@@ -12,7 +12,7 @@ import java.util.List;
  * @Author XiongCheng
  * @Date 2018/1/21 22:59.
  */
-public interface BaseDAO {
+public interface IBaseDAO {
     /**
      *  添加数据
      * @param data 新增的数据实例

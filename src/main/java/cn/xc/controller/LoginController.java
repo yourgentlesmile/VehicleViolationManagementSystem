@@ -7,8 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +29,9 @@ public class LoginController {
     public String getPic() {
         return "makeCerPic";
     }
-    @PostMapping("/Api/Public/Login/checkCaptcha")
+    @GetMapping("/Api/Public/Login/checkCaptcha/{code}")
     @ResponseBody
-    public RespEntity checkCaptcha(@RequestParam(name = "code",required = false) String code, HttpServletRequest request) {
+    public RespEntity checkCaptcha(@PathVariable(name = "code",required = false) String code, HttpServletRequest request) {
         String validCode = (String) request.getSession().getAttribute(LoginConstant.PARAMETER_CAPTCHA);
         boolean result = false;
         if(code == null){

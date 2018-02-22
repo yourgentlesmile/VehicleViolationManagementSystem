@@ -59,13 +59,9 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
      * @throws BulletinBoardException
      */
     @Override
-    public void deleteBulletinByList(List<BulletinBoardDO> list) throws BulletinBoardException {
-        List<Long> idCollection = new ArrayList<>();
-        for (BulletinBoardDO item : list) {
-            idCollection.add(item.getId());
-        }
+    public void deleteBulletinByList(List<Long> list) throws BulletinBoardException {
         if (db != null) {
-            db.deleteDataByList(idCollection);
+            db.deleteDataByList(list);
         }else{
             throw new BulletinBoardException("DAO autowired is null");
         }

@@ -9,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户基本信息前端控制类
@@ -31,13 +28,13 @@ public class UserBasisController {
         service.registerUser(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/User/update")
+    @PutMapping("/Api/User/update")
     @ResponseBody
     public RespEntity updateAdminInformation(@RequestBody UserVO user){
         service.updateInformation(user);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PostMapping("/Api/User/changepwd")
+    @PutMapping("/Api/User/changepwd")
     @ResponseBody
     public RespEntity changePassword(String identifier, String password){
         if(service.updatePassword(identifier,password) == -1){
@@ -45,9 +42,9 @@ public class UserBasisController {
         }
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/Api/Public/User/checkIdentifier")
+    @GetMapping("/Api/Public/User/checkIdentifier/{username}")
     @ResponseBody
-    public RespEntity checkIdentifier(String identifier){
+    public RespEntity checkIdentifier(@PathVariable("username") String identifier){
         boolean result = service.checkIdentifierUnique(identifier);
         return new RespEntity(RespCode.SUCCESS,result);
     }
