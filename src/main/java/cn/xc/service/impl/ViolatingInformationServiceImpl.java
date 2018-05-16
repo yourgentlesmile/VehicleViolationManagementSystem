@@ -1,6 +1,7 @@
 package cn.xc.service.impl;
 
 import cn.xc.constant.ViolatingInformationConstant;
+import cn.xc.controller.BulletinBoardController;
 import cn.xc.dao.IViolatingInformationDAO;
 import cn.xc.dao.condition.ViolatingInformationExample;
 import cn.xc.entity.DO.ViolatingInformationDO;
@@ -8,12 +9,13 @@ import cn.xc.exception.ViolatingInformationException;
 import cn.xc.service.IViolatingInformationService;
 import cn.xc.service.constant.ServiceConstant;
 import cn.xc.util.ValidatorUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ import java.util.List;
  */
 @Service
 public class ViolatingInformationServiceImpl implements IViolatingInformationService {
-
+    private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
     IViolatingInformationDAO db;
 
@@ -37,10 +39,8 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
         ViolatingInformationExample example = new ViolatingInformationExample();
         ViolatingInformationExample.Criteria criteria = example.createCriteria();
         criteria.andIsDeletedEqualTo(0);
-
         List<ViolatingInformationDO> raw = db.selectByExample(example);
-        List<ViolatingInformationDO> result =  new ArrayList<>();
-        return result;
+        return raw;
     }
 
     /**
@@ -190,5 +190,21 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     @Override
     public void updateViolatingInformation(ViolatingInformationDO value) {
         db.updateByPrimaryKey(value);
+    }
+
+    /**
+     * 根据车牌号返回当前车辆扣分总和
+     *
+     * @param carNumber
+     * @return
+     */
+    @Override
+    public int getTotalPenaltyPointByCarNumber(String carNumber) throws ViolatingInformationException {
+        List<ViolatingInformationDO> carInformations = listViolatingInformationByCondition(ViolatingInformationConstant.QUERY_BY_CARNUMBER, carNumber);
+        int penaltyPointSum = 0;
+        for (ViolatingInformationDO carInformation : carInformations) {
+            penaltyPointSum += carInformation.getPenaltyPoint();
+        }
+        return penaltyPointSum;
     }
 }

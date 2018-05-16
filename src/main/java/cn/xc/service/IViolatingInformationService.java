@@ -56,4 +56,11 @@ public interface IViolatingInformationService {
      */
     void updateViolatingInformation(ViolatingInformationDO value)throws ViolatingInformationException;
 
+    /**
+     * 根据
+     * @param carNumber
+     * @return
+     */
+    int getTotalPenaltyPointByCarNumber(String carNumber) throws ViolatingInformationException;
+
 }

@@ -4,7 +4,7 @@ package cn.xc.constant;
  * 违章信息常量类
  * @version V1.0
  * @Author XiongCheng
- * @Date 2018/2/1 13:09.
+ * @Date 2018/2/1 13:09.    
  */
 public final class ViolatingInformationConstant {
     /**

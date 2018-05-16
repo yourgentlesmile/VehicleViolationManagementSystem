@@ -195,7 +195,7 @@
     update user_point
     set identifier = #{identifier,jdbcType=VARCHAR},
       current_point = #{currentPoint,jdbcType=TINYINT},
-      gmt_modifier = NOW(),
+      gmt_modifier = NOW()
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

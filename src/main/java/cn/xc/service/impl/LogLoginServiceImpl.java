@@ -30,13 +30,14 @@ public class LogLoginServiceImpl implements ILogLoginService {
     }
 
     @Override
-    public List<LogLoginDO> listLog(Long userId) throws LogLoginException {
+    public List<LogLoginDO> listLog(Long userId,String userType) throws LogLoginException {
         if (userId == null) {
             throw new LogLoginException("参数不能为NULL");
         }
         LogLoginExample example = new LogLoginExample();
         LogLoginExample.Criteria criteria = example.createCriteria();
         criteria.andLoginUserIdEqualTo(userId);
+        criteria.andIsAdminEqualTo(Integer.parseInt(userType));
         return db.selectByExample(example);
     }
 }

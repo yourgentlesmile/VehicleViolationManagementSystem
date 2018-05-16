@@ -1,5 +1,6 @@
 package cn.xc.configure.security;
 
+import cn.xc.configure.filter.IndexFilter;
 import cn.xc.constant.RoleNameConstant;
 import cn.xc.security.RestAuthenticationFailureHandler;
 import cn.xc.security.RestAuthenticationSuccessHandler;
@@ -14,7 +15,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,7 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
     @Autowired
     private AuthenticationProvider authenticationProvider;
-
+    @Autowired
+    private IndexFilter filter;
+    @Autowired
+    private RestAuthenticationSuccessHandler successHandler;
+    @Autowired
+    private LogoutSuccessHandler successLogoutHandler;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider);
@@ -46,16 +55,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.addFilterBefore(filter,ChannelProcessingFilter.class)
+        .authorizeRequests()
+        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
         .antMatchers("/Api/Admin/**","/Admin/**").hasRole(RoleNameConstant.ROLE_ADMIN_FOR_CONFIG)
         .antMatchers("/Api/User/**","/User/**").hasRole(RoleNameConstant.ROLE_CUSTOM_USER_FOR_CONFIG)
         .anyRequest().permitAll()
         .and()
         .formLogin().loginPage("/login").permitAll()
         .loginProcessingUrl("/login")
-        .failureHandler(new RestAuthenticationFailureHandler())
-        .successHandler(new RestAuthenticationSuccessHandler())
         .authenticationDetailsSource(authenticationDetailsSource)
+        .successHandler(successHandler)
+        .failureHandler(new RestAuthenticationFailureHandler())
+        .and().logout().logoutSuccessHandler(successLogoutHandler)
         .and().csrf().disable();
     }
 }

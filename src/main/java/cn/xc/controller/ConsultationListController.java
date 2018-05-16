@@ -28,7 +28,7 @@ import java.util.List;
 public class ConsultationListController {
     @Autowired
     private IConsultationService service;
-    @PostMapping("/Api/User/ConsultationList/add")
+    @PostMapping("/Api/User/ConsultationList")
     @ResponseBody
     public RespEntity createConsultation(HttpServletRequest request, ConsultationListDO form) throws ConsultationListException{
         HttpSession session = request.getSession(false);
@@ -39,19 +39,19 @@ public class ConsultationListController {
         service.createNewConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PutMapping("/Api/User/ConsultationList/update")
+    @PutMapping("/Api/User/ConsultationList")
     @ResponseBody
     public RespEntity updateConsultationList(ConsultationListDO form) throws ConsultationListException {
         service.updateConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @PutMapping("/Api/User/ConsultationList/response")
+    @PutMapping("/Api/Admin/ConsultationList/response")
     @ResponseBody
     public RespEntity responseConsultationList(ConsultationListDO form) throws ConsultationListException {
         service.responseConsultation(form);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @DeleteMapping("/Api/User/ConsultationList/delete")
+    @DeleteMapping("/Api/User/ConsultationList")
     @ResponseBody
     public RespEntity deleteConsultationList(List<ConsultationListDO> value) throws ConsultationListException {
         List<Long> id = new ArrayList<>();
@@ -61,7 +61,7 @@ public class ConsultationListController {
         service.deleteConsultation(id);
         return new RespEntity(RespCode.SUCCESS,null);
     }
-    @GetMapping("/Api/User/ConsultationList/list/{type}")
+    @GetMapping("/Api/Public/ConsultationList/{type}")
     @ResponseBody
     public RespEntity queryByCondition(@PathVariable(value = "type") Integer type,HttpServletRequest request) throws ConsultationListException{
         List<ConsultationListDO> result = null;
@@ -95,7 +95,7 @@ public class ConsultationListController {
         }
         return new RespEntity(RespCode.SUCCESS,result);
     }
-    @GetMapping("/Api/User/ConsultationList/list")
+    @GetMapping("/Api/Public/ConsultationList")
     @ResponseBody
     public RespEntity listAll(HttpServletRequest request) throws ConsultationListException{
         List<ConsultationListDO> result = service.findAll();

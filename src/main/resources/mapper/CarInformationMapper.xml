@@ -248,7 +248,7 @@
       owner = #{owner,jdbcType=VARCHAR},
       engine_number = #{engineNumber,jdbcType=VARCHAR},
       frame_number = #{frameNumber,jdbcType=VARCHAR},
-      gmt_modifier = NOW(),
+      gmt_modifier = NOW()
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

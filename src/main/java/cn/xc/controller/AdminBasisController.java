@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2018/1/28 11:40.
  *
  */
-@RequestMapping("/Admin")
 @Controller
 public class AdminBasisController {
     private static Logger logger = LoggerFactory.getLogger(AdminBasisController.class);

@@ -7,7 +7,7 @@ import cn.xc.entity.DO.BulletinBoardDO;
 import cn.xc.exception.BulletinBoardException;
 import cn.xc.service.IBulletinBoardService;
 import cn.xc.service.constant.ServiceConstant;
-import cn.xc.util.DateUtil;
+import cn.xc.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,14 +92,14 @@ public class BulletinBoardServiceImpl implements IBulletinBoardService{
                 rawResult = db.getDataByType((Integer.parseInt(param)));
                 break;
             case BulletinBoardConstant.QUERY_BY_GMT_CREATE:
-                List<Timestamp> queryParam = DateUtil.MillisToDateList(param);
+                List<Timestamp> queryParam = Util.MillisToDateList(param);
                 if(queryParam.size() != 2){
                     throw new BulletinBoardException("Need two argument，actual the number of argument in list is：" + queryParam.size());
                 }
                 rawResult = db.getDataByGmtCreateBetween(queryParam.get(ServiceConstant.INDEX_START_TIME),queryParam.get(ServiceConstant.INDEX_END_TIME));
                 break;
             case BulletinBoardConstant.QUERY_BY_GMT_MODIFIED:
-                List<Timestamp> timeScope = DateUtil.MillisToDateList(param);
+                List<Timestamp> timeScope = Util.MillisToDateList(param);
                 if(timeScope.size() != 2){
                     throw new BulletinBoardException("Need two argument，actual the number of argument in list is：" + timeScope.size());
                 }

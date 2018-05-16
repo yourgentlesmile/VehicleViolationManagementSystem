@@ -24,7 +24,7 @@ public class UserPointDO implements Serializable {
     /**
      * 当前分数
      */
-    private Byte currentPoint;
+    private Integer currentPoint;
 
     /**
      * 创建时间
@@ -39,7 +39,7 @@ public class UserPointDO implements Serializable {
     /**
      * 是否被删除1:已删除 0:未删除
      */
-    private Byte isDeleted;
+    private Integer isDeleted;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,11 +59,11 @@ public class UserPointDO implements Serializable {
         this.identifier = identifier;
     }
 
-    public Byte getCurrentPoint() {
+    public Integer getCurrentPoint() {
         return currentPoint;
     }
 
-    public void setCurrentPoint(Byte currentPoint) {
+    public void setCurrentPoint(Integer currentPoint) {
         this.currentPoint = currentPoint;
     }
 
@@ -83,11 +83,11 @@ public class UserPointDO implements Serializable {
         this.gmtModifier = gmtModifier;
     }
 
-    public Byte getIsDeleted() {
+    public Integer getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Integer isDeleted) {
         this.isDeleted = isDeleted;
     }
 

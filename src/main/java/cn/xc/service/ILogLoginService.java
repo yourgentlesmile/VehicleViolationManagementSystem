@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface ILogLoginService {
     void addLog(LogLoginDO log) throws LogLoginException;
-    List<LogLoginDO> listLog(Long userId) throws LogLoginException;
+    List<LogLoginDO> listLog(Long userId,String userType) throws LogLoginException;
 }

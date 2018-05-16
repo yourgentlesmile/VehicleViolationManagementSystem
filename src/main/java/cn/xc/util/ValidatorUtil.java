@@ -21,6 +21,7 @@ public class ValidatorUtil {
     public static boolean checkCarNumberLegality(String carNumber){
         Pattern p = Pattern.compile(carNumberCheckRegex);
         Matcher m = p.matcher(carNumber);
+        System.out.println(m.matches());
         return m.matches();
     }
 }

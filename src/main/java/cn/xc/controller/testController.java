@@ -2,6 +2,7 @@ package cn.xc.controller;
 
 import cn.xc.entity.RespEntity;
 import cn.xc.enums.RespCode;
+import cn.xc.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 新想法与功能实验类
@@ -36,30 +40,13 @@ public class testController {
     @GetMapping("/Api/User/test")
     @ResponseBody
     public String a(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        String s = userName + ((UserDetails)principal).getAuthorities().toString();
-        return s;
+        return Util.getCurrentUsername();
     }
     @GetMapping("/User/test")
     @ResponseBody
     public String b(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        String s = userName + ((UserDetails)principal).getAuthorities().toString();
-        return s;
+        return Util.getCurrentUsername();
     }
     @GetMapping("/Admin/test")
     @ResponseBody
@@ -78,16 +65,7 @@ public class testController {
     @GetMapping("/Api/Admin/test")
     @ResponseBody
     public String d(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        String s = userName + ((UserDetails)principal).getAuthorities().toString();
-        return s;
+        return Util.getCurrentUsername();
     }
     @GetMapping("/test/test/{q}")
     @ResponseBody
@@ -103,6 +81,16 @@ public class testController {
 //        }
 //        String s = userName + ((UserDetails)principal).getAuthorities().toString();
 //        return s;
+    }
+    @GetMapping("/Api/public/test")
+    @ResponseBody
+    public Map<String,Object> test(){
+        Map<String,Object> result = new HashMap<>();
+        result.put("symbol","wso2");
+        result.put("price",2.2);
+        result.put("volume",3);
+        System.out.println("------------------");
+        return result;
     }
 
 }

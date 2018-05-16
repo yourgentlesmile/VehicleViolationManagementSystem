@@ -79,7 +79,7 @@
     </sql>
 
     <!--查操作-->
-    <select id="selectByExample" parameterType="cn.xc.entity.DO.ViolatingInformationExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="cn.xc.dao.condition.ViolatingInformationExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -113,7 +113,7 @@
         UPDATE violation_information set is_deleted = 1
         where id = #{id,jdbcType=BIGINT} and is_deleted = 0
     </update>
-    <update id="deleteByExample" parameterType="cn.xc.entity.DO.ViolatingInformationExample">
+    <update id="deleteByExample" parameterType="cn.xc.dao.condition.ViolatingInformationExample">
         UPDATE violation_information set is_deleted = 1
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
@@ -199,7 +199,7 @@
                 0,
         </trim>
     </insert>
-    <select id="countByExample" parameterType="cn.xc.entity.DO.ViolatingInformationExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="cn.xc.dao.condition.ViolatingInformationExample" resultType="java.lang.Long">
         select count(*) from violation_information
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
@@ -282,7 +282,7 @@
                 penalty_money = #{penaltyMoney,jdbcType=DECIMAL},
             </if>
             <if test="gmtModified != null">
-                gmt_modified = NOW(),
+                gmt_modified = NOW()
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
@@ -297,7 +297,7 @@
         car_number = #{carNumber,jdbcType=VARCHAR},
         penalty_point = #{penaltyPoint,jdbcType=TINYINT},
         penalty_money = #{penaltyMoney,jdbcType=DECIMAL},
-        gmt_modified = NOW(),
+        gmt_modified = NOW()
         where id = #{id,jdbcType=BIGINT}
     </update>
 </mapper>

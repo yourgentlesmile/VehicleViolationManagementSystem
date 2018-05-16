@@ -39,7 +39,7 @@ public class CarInformationDO implements Serializable {
     /**
      * 车架号
      */
-    private String frameNumber;
+        private String frameNumber;
 
     /**
      * 创建时间

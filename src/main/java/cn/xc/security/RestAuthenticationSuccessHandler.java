@@ -4,13 +4,17 @@ import cn.xc.constant.LoginConstant;
 import cn.xc.entity.DO.AdminDO;
 import cn.xc.entity.DO.LogLoginDO;
 import cn.xc.entity.DO.UserDO;
+import cn.xc.entity.RespEntity;
+import cn.xc.enums.RespCode;
 import cn.xc.exception.LogLoginException;
 import cn.xc.service.IAdminService;
 import cn.xc.service.ILogLoginService;
 import cn.xc.service.IUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +29,7 @@ import java.sql.Timestamp;
  * @Author XiongCheng
  * @Date 2018/2/7 12:15.
  */
+@Component
 public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     @Autowired
     private IUserService userService;
@@ -47,9 +52,11 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         HttpSession session = request.getSession();
         CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails();
         LogLoginDO logLoginDO = new LogLoginDO();
+        Object user = null;
         if(LoginConstant.USER_TYPE_ADMIN.equals(details.getUserType())){
             AdminDO adminDO = adminService.findUserByName(authentication.getName());
-
+            adminDO.setAdminPassword("******");
+            user = adminDO;
             logLoginDO.setIsAdmin(Integer.parseInt(LoginConstant.USER_TYPE_ADMIN));
             logLoginDO.setLoginUserId(adminDO.getId());
             logLoginDO.setLoginTime(new Timestamp(System.currentTimeMillis()));
@@ -62,7 +69,8 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         }
         if(LoginConstant.USER_TYPE_CUSTOM_USER.equals(details.getUserType())){
             UserDO userDO = userService.findUserByName(authentication.getName());
-
+            userDO.setUserPassword("******");
+            user = userDO;
             logLoginDO.setIsAdmin(Integer.parseInt(LoginConstant.USER_TYPE_CUSTOM_USER));
             logLoginDO.setLoginUserId(userDO.getId());
             logLoginDO.setLoginTime(new Timestamp(System.currentTimeMillis()));
@@ -77,8 +85,12 @@ public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         } catch (LogLoginException e) {
             e.printStackTrace();
         }
-        String targetUrl = request.getHeader("Referer");
-        handle(request, response, authentication);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(new RespEntity(RespCode.SUCCESS,user));
+        response.getWriter().write(json);
+        response.getWriter().flush();
         clearAuthenticationAttributes(request);
     }
 }
