@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Date 2018-05-06 9:15.
  */
 @Component
-public class IndexFilter implements Filter {
+public class CrossDomainFilter implements Filter {
     @Override
     public void destroy() {
     }

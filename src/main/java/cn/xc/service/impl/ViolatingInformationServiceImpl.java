@@ -2,10 +2,16 @@ package cn.xc.service.impl;
 
 import cn.xc.constant.ViolatingInformationConstant;
 import cn.xc.controller.BulletinBoardController;
+import cn.xc.dao.ICarInformationDAO;
+import cn.xc.dao.IUserPointDAO;
 import cn.xc.dao.IViolatingInformationDAO;
+import cn.xc.dao.condition.CarInformationExample;
 import cn.xc.dao.condition.ViolatingInformationExample;
+import cn.xc.entity.DO.CarInformationDO;
+import cn.xc.entity.DO.UserPointDO;
 import cn.xc.entity.DO.ViolatingInformationDO;
 import cn.xc.exception.ViolatingInformationException;
+import cn.xc.service.IUserService;
 import cn.xc.service.IViolatingInformationService;
 import cn.xc.service.constant.ServiceConstant;
 import cn.xc.util.ValidatorUtil;
@@ -28,7 +34,15 @@ import java.util.List;
 public class ViolatingInformationServiceImpl implements IViolatingInformationService {
     private static Logger logger = LoggerFactory.getLogger(BulletinBoardController.class);
     @Autowired
-    IViolatingInformationDAO db;
+    private IViolatingInformationDAO db;
+    @Autowired
+    private IUserService userService;
+    @Autowired
+    private ICarInformationDAO carInforDB;
+
+    @Autowired
+    private IUserPointDAO userPointDAO;
+
 
     /**
      *  获取所有违章信息
@@ -52,8 +66,17 @@ public class ViolatingInformationServiceImpl implements IViolatingInformationSer
     @Override
     public void addViolatingInformation(ViolatingInformationDO value) throws ViolatingInformationException {
         boolean isCarNumberValid = ValidatorUtil.checkCarNumberLegality(value.getCarNumber());
-        if (isCarNumberValid){
+        if (!isCarNumberValid){
             throw new ViolatingInformationException("车牌号格式不正确");
+        }
+        CarInformationExample carExample = new CarInformationExample();
+        CarInformationExample.Criteria criteria = carExample.createCriteria();
+        criteria.andCarNumberEqualTo(value.getCarNumber());
+        List<CarInformationDO> carInforResult = carInforDB.selectByExample(carExample);
+        for (CarInformationDO carInformationDO : carInforResult) {
+            UserPointDO userPointInformation = userService.getUserPointInformation(carInformationDO.getOwner());
+            userPointInformation.setCurrentPoint(userPointInformation.getCurrentPoint() - value.getPenaltyPoint() < 0 ? 0 : userPointInformation.getCurrentPoint() - value.getPenaltyPoint());
+            userPointDAO.updateByPrimaryKey(userPointInformation);
         }
         db.insert(value);
     }

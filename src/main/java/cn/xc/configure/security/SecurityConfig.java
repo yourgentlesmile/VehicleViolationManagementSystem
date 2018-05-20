@@ -1,6 +1,6 @@
 package cn.xc.configure.security;
 
-import cn.xc.configure.filter.IndexFilter;
+import cn.xc.configure.filter.CrossDomainFilter;
 import cn.xc.constant.RoleNameConstant;
 import cn.xc.security.RestAuthenticationFailureHandler;
 import cn.xc.security.RestAuthenticationSuccessHandler;
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationProvider authenticationProvider;
     @Autowired
-    private IndexFilter filter;
+    private CrossDomainFilter filter;
     @Autowired
     private RestAuthenticationSuccessHandler successHandler;
     @Autowired
